@@ -118,6 +118,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         {
             m_currentAttack++;
             hitboxespada.enabled = true;
+            Invoke("DesactivarAtaque", 0.5f);
             this.GetComponent<Stamina>().UsarStamina(5f);
             // Loop back to one after third attack
             if (m_currentAttack > 3)
@@ -209,5 +210,9 @@ public class HeroKnight_Modi : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
         }
+    }
+    private void DesactivarAtaque()
+    {
+        hitboxespada.enabled = false;
     }
 }
