@@ -25,6 +25,8 @@ public class HeroKnight_Modi : MonoBehaviour {
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
+    private BoxCollider2D hitboxespada;
+    public GameObject espada;
 
 
     // Use this for initialization
@@ -37,6 +39,8 @@ public class HeroKnight_Modi : MonoBehaviour {
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight_Modi>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight_Modi>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight_Modi>();
+        hitboxespada = espada.GetComponent<BoxCollider2D>();
+        hitboxespada.enabled = false;
     }
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
@@ -75,12 +79,14 @@ public class HeroKnight_Modi : MonoBehaviour {
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            espada.transform.rotation = Quaternion.Euler(0, 0, 0);
             m_facingDirection = 1;
         }
             
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            espada.transform.rotation = Quaternion.Euler(0, -180, 0);
             m_facingDirection = -1;
         }
 
@@ -111,6 +117,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && (5 < this.GetComponent<Stamina>().ReturnStamina()))
         {
             m_currentAttack++;
+            hitboxespada.enabled = true;
             this.GetComponent<Stamina>().UsarStamina(5f);
             // Loop back to one after third attack
             if (m_currentAttack > 3)
