@@ -38,7 +38,8 @@ public class HeroKnight_Modi : MonoBehaviour {
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight_Modi>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight_Modi>();
     }
-
+    // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
+    //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
     // Update is called once per frame
     void Update ()
     {
@@ -107,10 +108,10 @@ public class HeroKnight_Modi : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && (5 < this.GetComponent<Stamina>().ReturnStamina()))
         {
             m_currentAttack++;
-
+            this.GetComponent<Stamina>().UsarStamina(5f);
             // Loop back to one after third attack
             if (m_currentAttack > 3)
                 m_currentAttack = 1;
@@ -137,8 +138,9 @@ public class HeroKnight_Modi : MonoBehaviour {
             m_animator.SetBool("IdleBlock", false);
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
         {
+            this.GetComponent<Stamina>().UsarStamina(5f);
             m_rolling = true;
             m_animator.SetTrigger("Roll");
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
@@ -146,8 +148,9 @@ public class HeroKnight_Modi : MonoBehaviour {
             
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && (5 < this.GetComponent<Stamina>().ReturnStamina()))
         {
+            this.GetComponent<Stamina>().UsarStamina(5f);
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);

@@ -7,12 +7,13 @@ public class BarraDeVida : MonoBehaviour
 {
     // Start is called before the first frame update
     public Image barraVida;
-
+    private Animator m_animator;
     public float vidaActual = 80;
     public GameObject pantallaMuerte;
     public float vidaMaxima = 100;
     public bool invencible = false;
     private float damage;
+    [SerializeField] bool m_noBlood = false;
 
     // Update is called once per frame
     void Update()
@@ -34,7 +35,7 @@ public class BarraDeVida : MonoBehaviour
 
     private void Start()
     {
-
+        m_animator = GetComponent<Animator>();
     }
 
     public void RestarVida(float cantidad)
@@ -45,16 +46,18 @@ public class BarraDeVida : MonoBehaviour
      
 
             vidaActual -= cantidad;
-           // StartCoroutine(FrenarNasus());
-
+            // StartCoroutine(FrenarNasus());
+            m_animator.SetTrigger("Hurt");
             if (vidaActual  <= 0)
             {
                 //sonidoJugador.StopPlayAllSounds();
-              
+                m_animator.SetBool("noBlood", m_noBlood);
+                m_animator.SetTrigger("Death");
                 Time.timeScale = 0;
               
                 Debug.Log("Has muerto");
-           
+              
+
 
             }
             if (vidaActual > 100)
