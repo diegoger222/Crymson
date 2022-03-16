@@ -195,4 +195,12 @@ public class HeroKnight_Modi : MonoBehaviour {
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Poti"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
