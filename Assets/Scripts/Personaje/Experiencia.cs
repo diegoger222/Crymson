@@ -33,7 +33,7 @@ public class Experiencia : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        text_exp.text = exp_acomul.ToString();
     }
 
     public void ExperienciaPermanente()
