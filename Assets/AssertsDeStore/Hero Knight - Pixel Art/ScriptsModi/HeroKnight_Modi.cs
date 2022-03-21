@@ -210,6 +210,11 @@ public class HeroKnight_Modi : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
         }
+        if (other.CompareTag("SubidaNivel"))
+        {
+            this.GetComponent<Experiencia>().ExperienciaPermanente();
+            other.gameObject.SetActive(false);
+        }
     }
     private void DesactivarAtaque()
     {

@@ -26,7 +26,7 @@ public class Experiencia : MonoBehaviour
         exp_nivel = 125; 
         var_nivel = 35;
         exp_guar = 0;
-        exp_acomul = 0;
+        exp_acomul = 120;
         puntos_skills = 0; 
     }
 
@@ -34,19 +34,23 @@ public class Experiencia : MonoBehaviour
     void Update()
     {
         text_exp.text = exp_acomul.ToString();
+        text_nivel.text = act_nivel.ToString();
     }
 
     public void ExperienciaPermanente()
     {
        
-        exp_guar += exp_acomul;
+        exp_guar = exp_acomul;
+        
         int exp_nec = exp_nivel + var_nivel * (act_nivel - 1); //experiencia de nivel necesaria;
         while(exp_guar> exp_nec)
         {
             int aux_exp = exp_guar - exp_nec;
             act_nivel += 1; //subir nivel
             puntos_skills += 1; // un punto mas 
-            exp_guar = aux_exp;
+            exp_acomul = aux_exp;
+            exp_guar = 0;
+
         }
     }
     

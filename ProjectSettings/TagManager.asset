@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Poti
   - Enemy
+  - SubidaNivel
   layers:
   - Default
   - TransparentFX
