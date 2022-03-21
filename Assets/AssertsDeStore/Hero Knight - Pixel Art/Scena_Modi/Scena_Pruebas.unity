@@ -4662,22 +4662,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
-  m_Text: 'A: Move Left
-
-    D: Move Right
-
-    Left Click: Attack
-
-    Right Click:
-    Block
-
-    Left Shit: Roll
-
-    Q: Hurt
-
-    E: Death
-
-    Space: Jump'
+  m_Text: "A: Move Left\nD: Move Right\nLeft Click: Attack\nRight Click: Block\nLeft
+    Shit: Roll\nQ: Hurt\nE: Death\nSpace: Jump\n1: Recibir da\xF1os\n2: A\xF1adir
+    una poti mas \n3: Gastar poti"
 --- !u!222 &2076044326
 CanvasRenderer:
   m_ObjectHideFlags: 0
