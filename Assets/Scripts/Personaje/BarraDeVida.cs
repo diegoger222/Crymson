@@ -79,7 +79,8 @@ public class BarraDeVida : MonoBehaviour
                 //sonidoJugador.StopPlayAllSounds();
                 m_animator.SetBool("noBlood", m_noBlood);
                 m_animator.SetTrigger("Death");
-                Time.timeScale = 0;
+                Invoke("Muerte", 2f);
+                
               
                 Debug.Log("Has muerto");
               
@@ -128,7 +129,10 @@ public class BarraDeVida : MonoBehaviour
             im_poti.sprite = b5;
         }
     }
-
+    private void Muerte()
+    {
+        Time.timeScale = 0;
+    }
     IEnumerator FrenarNasus() {
         invencible = true;
         yield return new WaitForSeconds(0.75f);   
