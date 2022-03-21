@@ -13,7 +13,18 @@ public class BarraDeVida : MonoBehaviour
     public float vidaMaxima = 100;
     public bool invencible = false;
     private float damage;
+    public Text text_poti;
+    private int n_poti; //Potis actuales
+    private int m_poti; //maximo potis
+    public Image im_poti;
     [SerializeField] bool m_noBlood = false;
+    //imagenfull poti a menos llena
+    public Sprite b1;
+    public Sprite b2;
+    public Sprite b3;
+    public Sprite b4;
+    public Sprite b5;
+
 
     // Update is called once per frame
     void Update()
@@ -22,20 +33,35 @@ public class BarraDeVida : MonoBehaviour
 
         if (Input.GetKeyDown("1"))
         {
-
+            
             RestarVida(10);
+            
         }
         if (Input.GetKeyDown("2"))
         {
 
-            RestarVida(-10);
+            MorePotis(1);
+
         }
+        if (Input.GetKeyDown("3"))
+        {
+            if (n_poti > 0)
+            {
+                RestarVida(-10);
+                n_poti -= 1;
+                text_poti.text = n_poti.ToString();
+                ActualizarImagenPoti();
+            }
+        }
+        
 
     }
 
     private void Start()
     {
         m_animator = GetComponent<Animator>();
+        n_poti = 4;
+        m_poti = 4;
     }
 
     public void RestarVida(float cantidad)
@@ -66,11 +92,51 @@ public class BarraDeVida : MonoBehaviour
             }
         }
     }
+    //parte de las potis
+    public void MorePotis(int numero)
+    {
+        n_poti += numero;
+        m_poti += numero;
+        text_poti.text = n_poti.ToString();
+        ActualizarImagenPoti();
+    }
+    public void RecuperarPotis()
+    {
+        n_poti = m_poti;
+        ActualizarImagenPoti();
+    }
 
+    public void ActualizarImagenPoti()
+    {
+        float a_n = n_poti;
+        float a_m = m_poti;
+        float a = a_n / a_m;
+        if(a == 1f)
+        {
+            im_poti.sprite = b1;
+        }else if (a >= 0.75f)
+        {
+            im_poti.sprite = b2;
+        }else if(a>= 0.5f)
+        {
+            im_poti.sprite = b3;
+        }else if (a > 0f)
+        {
+            im_poti.sprite = b4;
+        }else if (a==0f)
+        {
+            im_poti.sprite = b5;
+        }
+    }
 
     IEnumerator FrenarNasus() {
         invencible = true;
         yield return new WaitForSeconds(0.75f);   
         invencible = false;
     }
+
+   
+
+
+   
 }

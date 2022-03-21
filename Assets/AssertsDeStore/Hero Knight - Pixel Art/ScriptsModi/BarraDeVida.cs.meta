@@ -3,7 +3,16 @@ guid: 8f028a25a9f2ae54cb48506f2e047705
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - barraVida: {instanceID: 0}
+  - pantallaMuerte: {instanceID: 0}
+  - text_poti: {instanceID: 0}
+  - im_poti: {instanceID: 0}
+  - b1: {fileID: 21300000, guid: 87c6b600baaee0d4f87216d24f6f2c14, type: 3}
+  - b2: {fileID: 21300000, guid: 33616eea09c45d94680fb8cecff30251, type: 3}
+  - b3: {fileID: 21300000, guid: 6343597aeee2f3e4eb5f09948e345540, type: 3}
+  - b4: {fileID: 21300000, guid: 763a1e01a7d461e499a6e5f73f11403e, type: 3}
+  - b5: {fileID: 21300000, guid: 087b874b98527c943a6b823126e6d84d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
