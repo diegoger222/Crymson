@@ -11,6 +11,7 @@ public class Experiencia : MonoBehaviour
     public Text text_nivel;
     public Text text_exp;
     public Image barra_exp;
+    public Text textoValorBarraExperiencia;
     //public Image pot_exp;
     private int act_nivel;
     private int exp_nivel; // lo que te cuesta subir de nivel base
@@ -20,6 +21,7 @@ public class Experiencia : MonoBehaviour
     private int puntos_skills;
     private int exp_perdi; //experiencia perdida al morir
 
+    private int experienciaNecesaria;
     void Start()
     {
         act_nivel = 1;
@@ -28,6 +30,7 @@ public class Experiencia : MonoBehaviour
         exp_guar = 0;
         exp_acomul = 120;
         puntos_skills = 0; 
+        experienciaNecesaria = 125;
     }
 
     // Update is called once per frame
@@ -42,14 +45,17 @@ public class Experiencia : MonoBehaviour
        
         exp_guar = exp_acomul;
         
-        int exp_nec = exp_nivel + var_nivel * (act_nivel - 1); //experiencia de nivel necesaria;
-        while(exp_guar> exp_nec)
+        experienciaNecesaria = exp_nivel + var_nivel * (act_nivel - 1); //experiencia de nivel necesaria;
+        while(exp_guar> experienciaNecesaria)
         {
-            int aux_exp = exp_guar - exp_nec;
+            int aux_exp = exp_guar - experienciaNecesaria;
             act_nivel += 1; //subir nivel
             puntos_skills += 1; // un punto mas 
+            barra_exp.fillAmount = 
             exp_acomul = aux_exp;
             exp_guar = 0;
+            barra_exp.fillAmount = exp_acomul / experienciaNecesaria;
+            textoValorBarraExperiencia.text = "" + exp_acomul.ToString() + " / " + experienciaNecesaria.ToString() + " XP";
 
         }
     }
@@ -57,6 +63,10 @@ public class Experiencia : MonoBehaviour
     public void GanarExperiencia(int cantidad)
     {
         exp_acomul += cantidad;
+        //actualizamos la barra de experiencia y el texto con la cantidad de dicha
+        barra_exp.fillAmount = exp_acomul / experienciaNecesaria;
+        textoValorBarraExperiencia.text = "" + exp_acomul.ToString() + " / " + experienciaNecesaria.ToString() + " XP";
+        
     }
     
     //futuro codigo que genere las potis de exp cuando mueres
