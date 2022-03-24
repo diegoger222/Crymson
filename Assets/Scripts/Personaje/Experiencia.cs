@@ -13,15 +13,15 @@ public class Experiencia : MonoBehaviour
     public Image barra_exp;
     public Text textoValorBarraExperiencia;
     //public Image pot_exp;
-    private int act_nivel;
-    private int exp_nivel; // lo que te cuesta subir de nivel base
+    private float act_nivel;
+    private float exp_nivel; // lo que te cuesta subir de nivel base
     private int var_nivel; // experiencia extra que cuesta por cada nivel 
-    private int exp_guar; // experiencia guardada
-    private int exp_acomul; //experiencia acomulada
+    private float exp_guar; // experiencia guardada
+    private float exp_acomul; //experiencia acomulada
     private int puntos_skills;
-    private int exp_perdi; //experiencia perdida al morir
+    private float exp_perdi; //experiencia perdida al morir
 
-    private int experienciaNecesaria;
+    private float experienciaNecesaria;
     void Start()
     {
         act_nivel = 1;
@@ -31,6 +31,7 @@ public class Experiencia : MonoBehaviour
         exp_acomul = 120;
         puntos_skills = 0; 
         experienciaNecesaria = 125;
+        textoValorBarraExperiencia.text = "" + exp_acomul.ToString() + " / " + experienciaNecesaria.ToString() + " XP";
     }
 
     // Update is called once per frame
@@ -38,6 +39,8 @@ public class Experiencia : MonoBehaviour
     {
         text_exp.text = exp_acomul.ToString();
         text_nivel.text = act_nivel.ToString();
+
+        barra_exp.fillAmount = exp_acomul / experienciaNecesaria;
     }
 
     public void ExperienciaPermanente()
@@ -48,10 +51,10 @@ public class Experiencia : MonoBehaviour
         experienciaNecesaria = exp_nivel + var_nivel * (act_nivel - 1); //experiencia de nivel necesaria;
         while(exp_guar> experienciaNecesaria)
         {
-            int aux_exp = exp_guar - experienciaNecesaria;
+           float aux_exp = exp_guar - experienciaNecesaria;
             act_nivel += 1; //subir nivel
             puntos_skills += 1; // un punto mas 
-            barra_exp.fillAmount = 
+       
             exp_acomul = aux_exp;
             exp_guar = 0;
             barra_exp.fillAmount = exp_acomul / experienciaNecesaria;
