@@ -8,8 +8,13 @@ public class Slot : MonoBehaviour
 {
     [SerializeField] private Text count;
     public Item item;
-    public GameObject player;
+    private GameObject player;
 
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player);
+    }
 
     public void DisableCounter()
     {
@@ -26,10 +31,12 @@ public class Slot : MonoBehaviour
         switch (item.id)
         {
             case 1:
-                //player.GetComponent<BarraDeVida>().RestarVida(-10);
+                player.GetComponent<BarraDeVida>().RestarVida(-30);
+                Destroy(gameObject);
                 break;
             case 2:
-                //player.GetComponent<Experiencia>().GanarExperiencia(10);
+                player.GetComponent<Experiencia>().GanarExperiencia(30);
+                Destroy(gameObject);
                 break;
             default:
                 break;
