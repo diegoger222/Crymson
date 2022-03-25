@@ -73,6 +73,7 @@ public class Inventory : MonoBehaviour
 
     public bool RemoveItem(Item itemToRemove, int quantity)
     {
+        
         return true;
     }
 

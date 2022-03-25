@@ -9,6 +9,7 @@ public class Slot : MonoBehaviour
     [SerializeField] private Text count;
     public Item item;
     private GameObject player;
+    private int ax = 0;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class Slot : MonoBehaviour
     public void SetCount(int n)
     {
         count.text = n.ToString();
+        ax = n;
     }
 
     public void UseItem()
@@ -31,12 +33,28 @@ public class Slot : MonoBehaviour
         switch (item.id)
         {
             case 1:
-                player.GetComponent<BarraDeVida>().RestarVida(-30);
-                Destroy(gameObject);
+                player.GetComponent<BarraDeVida>().RestarVida(-30);       
+                Debug.Log(ax);
+                if ((ax - 1) <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    SetCount(ax - 1);
+                }
+               
                 break;
             case 2:
                 player.GetComponent<Experiencia>().GanarExperiencia(30);
-                Destroy(gameObject);
+                if ((ax - 1) <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    SetCount(ax - 1);
+                }
                 break;
             default:
                 break;
