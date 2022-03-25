@@ -9,12 +9,14 @@ public class Slot : MonoBehaviour
     [SerializeField] private Text count;
     public Item item;
     private GameObject player;
+    private GameObject a;
     private int ax = 0;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Debug.Log(player);
+        a = GameObject.FindGameObjectWithTag("InvPru");
     }
 
     public void DisableCounter()
@@ -28,20 +30,25 @@ public class Slot : MonoBehaviour
         ax = n;
     }
 
-    public void UseItem()
+    public void UseItem()  //D.R.M 23/03/22
     {
         switch (item.id)
         {
             case 1:
                 player.GetComponent<BarraDeVida>().RestarVida(-30);       
-                Debug.Log(ax);
+              //  Debug.Log(ax);
                 if ((ax - 1) <= 0)
                 {
+
+                   
+
+                    a.GetComponent<Inventory>().RemoveItem(item, 1);
                     Destroy(gameObject);
                 }
                 else
                 {
-                    SetCount(ax - 1);
+                    a.GetComponent<Inventory>().RemoveItem(item, 1);
+                  // SetCount(ax - 1);
                 }
                
                 break;
@@ -49,11 +56,14 @@ public class Slot : MonoBehaviour
                 player.GetComponent<Experiencia>().GanarExperiencia(30);
                 if ((ax - 1) <= 0)
                 {
-                    Destroy(gameObject);
+                    a.GetComponent<Inventory>().RemoveItem(item, 1);
+                   Destroy(gameObject);
                 }
                 else
                 {
-                    SetCount(ax - 1);
+
+                    a.GetComponent<Inventory>().RemoveItem(item, 1);
+                  //  SetCount(ax - 1);
                 }
                 break;
             default:

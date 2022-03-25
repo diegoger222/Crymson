@@ -55,10 +55,21 @@ public class Inventory : MonoBehaviour
         {
             if (items[i] != null &&
                 items[i].id == itemToAdd.id && 
-                itemToAdd.stackable)
+                itemToAdd.stackable )
             {
-                items[i].quantity++;
-                slots[i].SetCount(items[i].quantity);
+
+                if (slots[i] == null)   //D
+                {
+
+                    slots[i] = CreateNewSlotForItem("ItemSlot" + i, items[i]); //D
+                }
+                else
+                {//D
+                 //  items[i].quantity++;
+                    int aux = items[i].quantity;
+                    items[i].quantity = aux + 1;
+                    slots[i].SetCount(aux+1);
+                }
                 return true;
             }
             else if (items[i] == null)
@@ -71,10 +82,33 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public bool RemoveItem(Item itemToRemove, int quantity)
+    public bool RemoveItem(Item itemToRemove, int quantity) //D.R.M 25/03/22 modif
     {
-        
-        return true;
+        for (int i = 0; i < numSlots; i++)
+        {
+            if (items[i] != null &&
+                    items[i].id == itemToRemove.id &&
+                    itemToRemove.stackable)
+            {
+                if ((items[i].quantity - 1) > 0)
+                {
+                    int aux = items[i].quantity - 1;
+                    Debug.Log(aux);
+                    items[i].quantity =  aux;
+                    Debug.Log(items[i].quantity);
+                    slots[i].SetCount(aux);
+                }
+                else
+                {
+
+                    items[i] = null;
+                    //items[i].quantity = items[i].quantity -1;
+
+                }
+                return true;
+            }
+        }
+            return true;
     }
 
     public void ToogleInventory()
