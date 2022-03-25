@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
     {
         Slot newSlot = Instantiate<Slot>(slotPrefab);
         newSlot.name = name;
+        newSlot.item = item;
         newSlot.transform.SetParent(slotsParent.transform);
         Transform imageTransform = newSlot.transform.Find("ItemBackground/Item");
         Image itemImage = imageTransform.gameObject.GetComponent<Image>();
