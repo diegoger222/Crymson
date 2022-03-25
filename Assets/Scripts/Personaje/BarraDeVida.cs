@@ -62,6 +62,8 @@ public class BarraDeVida : MonoBehaviour
         m_animator = GetComponent<Animator>();
         n_poti = 4;
         m_poti = 4;
+        text_poti.text = n_poti.ToString();
+        ActualizarImagenPoti();
     }
 
     public void RestarVida(float cantidad)
