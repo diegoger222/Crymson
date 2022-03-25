@@ -76,7 +76,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         float inputX = Input.GetAxis("Horizontal");
 
         // Swap direction of sprite depending on walk direction
-        if (inputX > 0)
+        if (inputX > 0 )
         {
             GetComponent<SpriteRenderer>().flipX = false;
             espada.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -91,7 +91,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
 
         // Move
-        if (!m_rolling )
+        if (!m_rolling && !m_animator.GetBool("IdleBlock"))
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
 
         //Set AirSpeed in animator
@@ -114,7 +114,7 @@ public class HeroKnight_Modi : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
+        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
         {
             m_currentAttack++;
             hitboxespada.enabled = true;
