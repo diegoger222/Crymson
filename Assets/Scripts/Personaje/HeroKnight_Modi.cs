@@ -114,12 +114,12 @@ public class HeroKnight_Modi : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
         {
             m_currentAttack++;
             hitboxespada.enabled = true;
             Invoke("DesactivarAtaque", 0.7f);
-            this.GetComponent<Stamina>().UsarStamina(5f);
+            this.GetComponent<Stamina>().UsarStamina(20f);
             // Loop back to one after third attack
             if (m_currentAttack > 3)
                 m_currentAttack = 1;
@@ -156,9 +156,9 @@ public class HeroKnight_Modi : MonoBehaviour {
             
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
         {
-            this.GetComponent<Stamina>().UsarStamina(30f);
+            this.GetComponent<Stamina>().UsarStamina(10f);
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
