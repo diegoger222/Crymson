@@ -8,7 +8,7 @@ public class BarraDeVida : MonoBehaviour
     // Start is called before the first frame update
     public Image barraVida;
     private Animator m_animator;
-    public float vidaActual = 80;
+    public float vidaActual = 50;
     public GameObject pantallaMuerte;
     public float vidaMaxima = 100;
     public bool invencible = false;

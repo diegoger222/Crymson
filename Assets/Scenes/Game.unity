@@ -19181,7 +19181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barraVida: {fileID: 1907731220}
-  vidaActual: 80
+  vidaActual: 50
   pantallaMuerte: {fileID: 0}
   vidaMaxima: 100
   invencible: 0

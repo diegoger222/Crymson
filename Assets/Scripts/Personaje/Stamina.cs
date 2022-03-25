@@ -15,7 +15,7 @@ public class Stamina : MonoBehaviour
     private int maxStamina = 100;
     private float currentStamina = 80;
 
-    private WaitForSeconds regenTick = new WaitForSeconds(0.05f);
+    private WaitForSeconds regenTick = new WaitForSeconds(0.025f);
     private Coroutine regen;
 
     public static Stamina instance;
@@ -66,7 +66,7 @@ public class Stamina : MonoBehaviour
 
     private IEnumerator RegenStamina()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
 
         while(currentStamina < maxStamina)
         {
