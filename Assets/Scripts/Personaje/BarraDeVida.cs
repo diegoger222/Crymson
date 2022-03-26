@@ -16,6 +16,7 @@ public class BarraDeVida : MonoBehaviour
     public Text text_poti;
     private int n_poti; //Potis actuales
     private int m_poti; //maximo potis
+    private int ndefensa;
     public Image im_poti;
     [SerializeField] bool m_noBlood = false;
     //imagenfull poti a menos llena
@@ -62,6 +63,7 @@ public class BarraDeVida : MonoBehaviour
         m_animator = GetComponent<Animator>();
         n_poti = 4;
         m_poti = 4;
+        ndefensa = 0;
         text_poti.text = n_poti.ToString();
         ActualizarImagenPoti();
     }
@@ -89,9 +91,9 @@ public class BarraDeVida : MonoBehaviour
 
 
             }
-            if (vidaActual > 100)
+            if (vidaActual > vidaMaxima)
             {
-                vidaActual = 100;
+                vidaActual = vidaMaxima;
             }
         }
     }
@@ -131,10 +133,27 @@ public class BarraDeVida : MonoBehaviour
             im_poti.sprite = b5;
         }
     }
+
+
+    
     private void Muerte()
     {
         Time.timeScale = 0;
     }
+
+
+    public void SumarPuntosVida(int puntos)
+    {
+        float a = puntos;
+        vidaMaxima += a;
+    }
+
+    public void SumarPuntosDefensa(int puntos)
+    {
+        ndefensa += puntos;
+    }
+
+
     IEnumerator FrenarNasus() {
         invencible = true;
         yield return new WaitForSeconds(0.75f);   

@@ -77,4 +77,13 @@ public class Experiencia : MonoBehaviour
     { 
         
     }
+
+    public int GetPuntos()
+    {
+        return puntos_skills;
+    }
+    public void UsarPuntos()
+    {
+        puntos_skills--;
+    }
 }

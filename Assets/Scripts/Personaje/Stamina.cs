@@ -75,5 +75,17 @@ public class Stamina : MonoBehaviour
         }
     }
 
+    public void SumarPuntosStamina(int puntos)
+    {
+        maxStamina += puntos;
+    }
+
+    /*
+    public void ResetMaxStamina() 
+    {
+        maxStamina = 100;
+    }
+    */
+
 
 }
