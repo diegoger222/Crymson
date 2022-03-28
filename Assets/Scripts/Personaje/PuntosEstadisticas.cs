@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuntosEstadisticas : MonoBehaviour
 {
@@ -14,16 +15,104 @@ public class PuntosEstadisticas : MonoBehaviour
     private int puntosDisponibles;
     private int puntosMaxDisponibles;
     private int puntosUsados;
+    private float nivelact;
+    public GameObject botonMenosVitalidad;
+    public GameObject botonMasVitalidad;
+    public GameObject botonMenosAguante;
+    public GameObject botonMasAguante;
+    public GameObject botonMenosFuerza;
+    public GameObject botonMasFuerza;
+    public GameObject player;
+    public GameObject iUstats;
+
+    public Text textVitalidad;
+    public Text textAguante;
+    public Text textFuerza;
+    public Text textnivel;
+    public Text textpuntos;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         
+        puntosDisponibles = 0;
+        puntosMaxDisponibles = 0;
+        puntosUsados = 0;
+        puntosEnDano = 0;
+        puntosEnStamina = 0;
+        puntosEnVida = 0;
+        puntosEnDefensa = 0;
+        nivelact = 1;
+
+        textAguante.text = puntosEnStamina.ToString();
+        textVitalidad.text = puntosEnVida.ToString();
+        textFuerza.text = puntosEnDano.ToString();
+        textnivel.text = nivelact.ToString();
+        textpuntos.text = puntosDisponibles.ToString();
+        
+      //  if()
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        ActivarStats();
+        if (iUstats.activeSelf)
+        {
+
+
+            textAguante.text = puntosEnStamina.ToString();
+            textVitalidad.text = puntosEnVida.ToString();
+            textFuerza.text = puntosEnDano.ToString();
+            textnivel.text = nivelact.ToString();
+            textpuntos.text = puntosDisponibles.ToString();
+            //si hay puntos disponibles
+            if (puntosDisponibles> 0)
+            {
+
+                botonMasAguante.SetActive(true);
+                botonMasFuerza.SetActive(true);
+                botonMasVitalidad.SetActive(true);
+            }
+            else
+            {
+                botonMasAguante.SetActive(false);
+                botonMasFuerza.SetActive(false);
+                botonMasVitalidad.SetActive(false);
+            }
+
+
+            if(puntosEnDano > 0)
+            {
+                botonMenosFuerza.SetActive(true);
+            }
+            else
+            {
+                botonMenosFuerza.SetActive(false);
+            }
+
+
+            if(puntosEnStamina > 0)
+            {
+                botonMenosAguante.SetActive(true);
+            }
+            else
+            {
+                botonMenosAguante.SetActive(false);
+            }
+
+            if(puntosEnVida > 0)
+            {
+                botonMenosVitalidad.SetActive(true);
+            }
+            else
+            {
+                botonMenosVitalidad.SetActive(false);
+            }
+
+        }
     }
 
     public void SubirPuntos() //esta funcion es llamada desde Experiencia cuando se sube de nivel para añadir puntos;
@@ -31,23 +120,27 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosDisponibles++;
         puntosMaxDisponibles++;
     }
+    public void Nivel(float a)
+    {
+        nivelact = a;
+    }
     public void ResetPuntos()
     {
         puntosDisponibles = puntosMaxDisponibles;
         puntosUsados = 0;
         if (puntosEnVida > 0)
         {
-            this.GetComponent<BarraDeVida>().SumarPuntosVida(-puntosEnVida);
+            player.GetComponent<BarraDeVida>().SumarPuntosVida(-puntosEnVida);
             puntosEnVida = 0;
         }
         if(puntosEnStamina > 0)
         {
-            this.GetComponent<Stamina>().SumarPuntosStamina(-puntosEnStamina);
+            player.GetComponent<Stamina>().SumarPuntosStamina(-puntosEnStamina);
             puntosEnStamina = 0;
         }
         if(puntosEnDefensa > 0)
         {
-            this.GetComponent<BarraDeVida>().SumarPuntosDefensa(-puntosEnDefensa);
+            player.GetComponent<BarraDeVida>().SumarPuntosDefensa(-puntosEnDefensa);
             puntosEnDefensa = 0;
         }
     }
@@ -61,7 +154,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnVida++;
         puntosUsados++;
         puntosDisponibles--;
-        this.GetComponent<BarraDeVida>().SumarPuntosVida(1);
+        player.GetComponent<BarraDeVida>().SumarPuntosVida(1);
     }
 
     public void PuntoMenosVida()
@@ -69,7 +162,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnVida--;
         puntosUsados--;
         puntosDisponibles++;
-        this.GetComponent<BarraDeVida>().SumarPuntosVida(-1);
+        player.GetComponent<BarraDeVida>().SumarPuntosVida(-1);
     }
 
     public void PuntoMasStamina()
@@ -77,7 +170,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnStamina++;
         puntosUsados++;
         puntosDisponibles--;
-        this.GetComponent<BarraDeVida>().SumarPuntosVida(1);
+        player.GetComponent<BarraDeVida>().SumarPuntosVida(1);
     }
 
     public void PuntoMenosStamina()
@@ -85,7 +178,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnStamina--;
         puntosUsados--;
         puntosDisponibles++;
-        this.GetComponent<BarraDeVida>().SumarPuntosVida(-1);
+        player.GetComponent<BarraDeVida>().SumarPuntosVida(-1);
     }
 
     public void PuntoMasDefensa()
@@ -93,7 +186,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDefensa++;
         puntosUsados++;
         puntosDisponibles--;
-        this.GetComponent<BarraDeVida>().SumarPuntosDefensa(1);
+        player.GetComponent<BarraDeVida>().SumarPuntosDefensa(1);
     }
 
     public void PuntoMenosDefensa()
@@ -101,9 +194,18 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDefensa--;
         puntosUsados--;
         puntosDisponibles++;
-        this.GetComponent<BarraDeVida>().SumarPuntosDefensa(-1);
+        player.GetComponent<BarraDeVida>().SumarPuntosDefensa(-1);
     }
     
-
+    public void ActivarStats()
+    {
+        
+            if (Input.GetKeyDown("p"))
+                if (iUstats.activeSelf)
+                    iUstats.SetActive(false);
+                else
+                    iUstats.SetActive(true);
+        
+    }
     
 }

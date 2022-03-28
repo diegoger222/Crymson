@@ -20,6 +20,7 @@ public class Experiencia : MonoBehaviour
     private float exp_acomul; //experiencia acomulada
     private int puntos_skills;
     private float exp_perdi; //experiencia perdida al morir
+    private GameObject skillpoints;
 
     private float experienciaNecesaria;
     void Start()
@@ -41,6 +42,7 @@ public class Experiencia : MonoBehaviour
         text_nivel.text = act_nivel.ToString();
 
         barra_exp.fillAmount = exp_acomul / experienciaNecesaria;
+        skillpoints = GameObject.FindGameObjectWithTag("Statsm");
     }
 
     public void ExperienciaPermanente()
@@ -54,7 +56,9 @@ public class Experiencia : MonoBehaviour
            float aux_exp = exp_guar - experienciaNecesaria;
             act_nivel += 1; //subir nivel
             puntos_skills += 1; // un punto mas 
-       
+            skillpoints.GetComponent<PuntosEstadisticas>().SubirPuntos();
+            skillpoints.GetComponent<PuntosEstadisticas>().Nivel(act_nivel);
+
             exp_acomul = aux_exp;
             exp_guar = 0;
             barra_exp.fillAmount = exp_acomul / experienciaNecesaria;

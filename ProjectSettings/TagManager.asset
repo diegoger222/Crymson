@@ -9,6 +9,7 @@ TagManager:
   - SubidaNivel
   - Pickable
   - InvPru
+  - Statsm
   layers:
   - Default
   - TransparentFX
