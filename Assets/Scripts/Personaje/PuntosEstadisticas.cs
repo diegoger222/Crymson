@@ -170,7 +170,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnStamina++;
         puntosUsados++;
         puntosDisponibles--;
-        player.GetComponent<BarraDeVida>().SumarPuntosVida(1);
+        player.GetComponent<Stamina>().SumarPuntosStamina(1);
     }
 
     public void PuntoMenosStamina()
@@ -178,7 +178,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnStamina--;
         puntosUsados--;
         puntosDisponibles++;
-        player.GetComponent<BarraDeVida>().SumarPuntosVida(-1);
+        player.GetComponent<Stamina>().RestarEstamina(1);
     }
 
     public void PuntoMasDefensa()
