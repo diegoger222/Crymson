@@ -146,7 +146,7 @@ public class HeroKnight_Modi : MonoBehaviour {
             m_animator.SetBool("IdleBlock", false);
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+        else if (m_grounded && Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
         {
             this.GetComponent<Stamina>().UsarStamina(30f);
             m_rolling = true;
