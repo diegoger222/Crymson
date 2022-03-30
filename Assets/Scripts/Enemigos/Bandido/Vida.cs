@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class Vida : MonoBehaviour
 {
-
-
+    private BoxCollider2D m_collider;
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     public Image vida;
@@ -19,6 +18,9 @@ public class Vida : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        m_collider = GetComponent<BoxCollider2D>();
+        m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
         vivo = true;
         vida_Max = 100;
         vida_Act = 80;
@@ -28,6 +30,12 @@ public class Vida : MonoBehaviour
     void Update()
     {
         vida.fillAmount = vida_Act / vida_Max;
+
+        if(vida_Act <= 0)
+        {
+            m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
+            m_collider.enabled = false;
+        }
     }
 
     public void RecibirDaño(int cantidad)
@@ -44,13 +52,9 @@ public class Vida : MonoBehaviour
         }
     }
 
-
-
-
     private void Muerte()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Experiencia>().GanarExperiencia(20);
         this.gameObject.SetActive(false);
-         
     }
 }

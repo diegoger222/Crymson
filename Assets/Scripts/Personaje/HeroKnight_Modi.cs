@@ -11,6 +11,7 @@ public class HeroKnight_Modi : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
+    private BoxCollider2D       m_collider;
     private Sensor_HeroKnight_Modi   m_groundSensor;
     private Sensor_HeroKnight_Modi   m_wallSensorR1;
     private Sensor_HeroKnight_Modi   m_wallSensorR2;
@@ -34,6 +35,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        m_collider = GetComponent<BoxCollider2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight_Modi>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight_Modi>();
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight_Modi>();
@@ -190,8 +192,26 @@ public class HeroKnight_Modi : MonoBehaviour {
                 m_body2d.velocity = Vector3.zero;
             }
         }
+        //If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
+        if (m_rolling)
+        {
+            Debug.Log("Está rolling");
+            m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
+            m_collider.enabled = false;
+        }
+        else
+        {
+            m_body2d.constraints = RigidbodyConstraints2D.None;
+            m_body2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            m_collider.enabled = true;
+        }
     }
 
+    void FixedUpdate()
+    {
+        
+
+    }
     // Animation Events
     // Called in slide animation.
     void AE_SlideDust()
