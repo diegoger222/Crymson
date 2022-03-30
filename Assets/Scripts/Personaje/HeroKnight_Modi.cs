@@ -182,6 +182,14 @@ public class HeroKnight_Modi : MonoBehaviour {
                 if(m_delayToIdle < 0)
                     m_animator.SetInteger("AnimState", 0);
         }
+        //Checks if the animation is attacking and prevents the character to move
+        if (m_grounded)
+        {
+            if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+            {
+                m_body2d.velocity = Vector3.zero;
+            }
+        }
     }
 
     // Animation Events
