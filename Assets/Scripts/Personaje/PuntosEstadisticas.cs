@@ -24,6 +24,7 @@ public class PuntosEstadisticas : MonoBehaviour
     public GameObject botonMasFuerza;
     public GameObject player;
     public GameObject iUstats;
+    public GameObject arma;
 
     public Text textVitalidad;
     public Text textAguante;
@@ -34,7 +35,7 @@ public class PuntosEstadisticas : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        arma = GameObject.FindGameObjectWithTag("Arma");
         
         puntosDisponibles = 0;
         puntosMaxDisponibles = 0;
@@ -143,6 +144,11 @@ public class PuntosEstadisticas : MonoBehaviour
             player.GetComponent<BarraDeVida>().SumarPuntosDefensa(-puntosEnDefensa);
             puntosEnDefensa = 0;
         }
+        if(puntosEnDano > 0)
+        {
+            arma.GetComponent<Daño>().SumarDamage(-puntosEnDano);
+            puntosEnDano = 0;
+        }
     }
 
 
@@ -196,7 +202,23 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosDisponibles++;
         player.GetComponent<BarraDeVida>().SumarPuntosDefensa(-1);
     }
+
+    public void PuntoMasFuerza()
+    {
+        puntosEnDano++;
+        puntosUsados++;
+        puntosDisponibles--;
+        arma.GetComponent<Daño>().SumarDamage(1);
+    }
     
+    public void PuntoMenosFuerza()
+    {
+        puntosEnDano--;
+        puntosUsados--;
+        puntosDisponibles++;
+        arma.GetComponent<Daño>().SumarDamage(-1);
+
+    }
     public void ActivarStats()
     {
         

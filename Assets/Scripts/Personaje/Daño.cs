@@ -6,7 +6,7 @@ public class Daño : MonoBehaviour
 {
     public int damage = 30;
     public float stunSec = 1.5f;
-
+    private int bonusDamage = 0;
 
     // Update is called once per frame
 
@@ -22,9 +22,14 @@ public class Daño : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             
-            other.GetComponent<Vida>().RecibirDaño(30);
+            other.GetComponent<Vida>().RecibirDaño(damage + bonusDamage);
         }
      
 
+    }
+
+    public void SumarDamage(int incre)
+    {
+        bonusDamage += incre;
     }
 }
