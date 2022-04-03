@@ -12,10 +12,10 @@ public class HudHabilidades : MonoBehaviour
     public class HabilU
     {
         public GameObject SlotIU { get; set; }
-        public GameObject habilidadIU { get; set; }
+       // public GameObject habilidadIU { get; set; }
 
     }
-    public List<HabilU> ListaHabi;
+    public List<HabilU> ListaHabi  = new List<HabilU>();
 
  
     // Start is called before the first frame update
@@ -35,11 +35,14 @@ public class HudHabilidades : MonoBehaviour
     }
     public void Iniciar()
     {
-        for(int a = 0; a < 6; a++)
-        {
+       // for(int a = 0; a < 6; a++)
+        //{
             //InterfazHabilidad prueba = new InterfazHabilidad(im)
-            GameObject habi = habilidadesHUD.transform.GetChild(a).gameObject; // obtenemos la habilidad correspondiente al index actual (a) 
-            ListaHabi.Add(new HabilU() { SlotIU = habi, habilidadIU = null });
+            GameObject habi = habilidadesHUD.transform.GetChild(0).gameObject; // obtenemos la habilidad correspondiente al index actual (a) 
+        Debug.Log(habi);
+
+        HabilU aux = new HabilU() { SlotIU = habi };
+            ListaHabi.Add(aux);
             
 
            // Image imAux = habi.transform.GetChild(0).GetComponent<Image>(); // obtenemos donde ira la imagen
@@ -48,7 +51,7 @@ public class HudHabilidades : MonoBehaviour
           //  InterfazHabilidad habil = new InterfazHabilidad(null,null,null,null);
             
           
-        }
+      //  }
        
     }
 
