@@ -12,7 +12,7 @@ public class HudHabilidades : MonoBehaviour
     public class HabilU
     {
         public GameObject SlotIU { get; set; }
-       // public GameObject habilidadIU { get; set; }
+        public GameObject habilidadIU { get; set; }
 
     }
     public List<HabilU> ListaHabi  = new List<HabilU>();
@@ -22,26 +22,27 @@ public class HudHabilidades : MonoBehaviour
     void Start()
     {
         habilidadesHUD = GameObject.FindGameObjectWithTag("HudHabilidades"); //Obtenes el game object donde estan los marcos de habilidades
+        Iniciar();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        Iniciar();
+       
         if (Input.GetKeyDown("l")){
-            UsoHabilidad();
+            UsoHabilidad(0);
         }
     }
     public void Iniciar()
     {
-       // for(int a = 0; a < 6; a++)
-        //{
+        for(int a = 0; a < 6; a++)
+        {
             //InterfazHabilidad prueba = new InterfazHabilidad(im)
-            GameObject habi = habilidadesHUD.transform.GetChild(0).gameObject; // obtenemos la habilidad correspondiente al index actual (a) 
-        Debug.Log(habi);
+            GameObject habi = habilidadesHUD.transform.GetChild(a).gameObject; // obtenemos la habilidad correspondiente al index actual (a) 
+      // Debug.Log(habi);
 
-        HabilU aux = new HabilU() { SlotIU = habi };
+          HabilU aux = new HabilU() { SlotIU = habi,habilidadIU =null };
             ListaHabi.Add(aux);
             
 
@@ -51,15 +52,15 @@ public class HudHabilidades : MonoBehaviour
           //  InterfazHabilidad habil = new InterfazHabilidad(null,null,null,null);
             
           
-      //  }
+        }
        
     }
 
 
 
-    public void UsoHabilidad()
+    public void UsoHabilidad(int nh)
     {
-        ListaHabi[0].SlotIU.transform.GetChild(3).GetComponent<Text>().text = "10"; //transform.GetChild(3).GetComponent<Text>() = 10;
+        ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().text = "10"; //transform.GetChild(3).GetComponent<Text>() = 10;
 
 
 
