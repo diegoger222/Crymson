@@ -77,6 +77,18 @@ public class HudHabilidades : MonoBehaviour
         
         ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = true;
         ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().enabled = true;
+        //  ListaHabi[nh].habilidadIU.ints
+        if (nh == 0)
+        {
+            GameObject aux = ListaHabi[nh].habilidadIU;
+            aux.transform.rotation = Quaternion.Euler(0, -180, 0);
+            GameObject.Instantiate(aux, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
+        }
+        else
+        {
+            GameObject.Instantiate(ListaHabi[nh].habilidadIU, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
+        }
+        
         auxCold.GetComponent<CoolDown>().UsoHabilidad(nh);
        // ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().text = "10"; //transform.GetChild(3).GetComponent<Text>() = 10;
 

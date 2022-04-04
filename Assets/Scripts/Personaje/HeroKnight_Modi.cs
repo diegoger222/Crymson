@@ -248,4 +248,16 @@ public class HeroKnight_Modi : MonoBehaviour {
     {
         hitboxespada.enabled = false;
     }
+
+    public bool Direccion()
+    {
+        if (m_facingDirection == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
