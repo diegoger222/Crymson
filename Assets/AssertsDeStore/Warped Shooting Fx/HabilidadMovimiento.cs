@@ -7,9 +7,10 @@ using UnityEngine;
 public class HabilidadMovimiento : MonoBehaviour
 {
  
-  
+            
         public Vector2 direction = new Vector2(1f, 0f);
         public float speed;
+          public int cooldown;
         private Rigidbody2D rb2d;
         void Start()
         {
@@ -19,5 +20,10 @@ public class HabilidadMovimiento : MonoBehaviour
         {
             rb2d.velocity = direction * speed;
         }
+
+        public int CoolDownTime()
+        {
+        return cooldown;
+     }
     
 }
