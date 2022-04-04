@@ -26787,6 +26787,7 @@ MonoBehaviour:
   coolDown: 0
   habilidades:
   - {fileID: 4134061935349696986, guid: c970cac5e7685704981ecca599e792cd, type: 3}
+  coolDownVar: []
 --- !u!1 &1500268475
 GameObject:
   m_ObjectHideFlags: 0
@@ -35249,7 +35250,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagenNormal: {fileID: 0}
   isCooldown: 1
-  habilidad1: {fileID: 1490348080}
+  auxCold: {fileID: 1490348080}
+  Habilidades:
+  - {fileID: 4134061935349696986, guid: c970cac5e7685704981ecca599e792cd, type: 3}
+  - {fileID: 2919703636638589629, guid: 13f8de0b0426dc1449bcdce5c86292fd, type: 3}
+  - {fileID: 909735914565224197, guid: 06c7bb4b63a6e7941abb9de5991112f4, type: 3}
+  - {fileID: 8368740001176790979, guid: 45a3077c95a783f4794feda102dbcf99, type: 3}
+  - {fileID: 1925483655688612645, guid: 17d12b4d265c50a4ba1e85c7d071700d, type: 3}
+  - {fileID: 772011016966554750, guid: 0d6b72ae34e33134a9fc9e6faaccb9c2, type: 3}
 --- !u!1 &2141685073
 GameObject:
   m_ObjectHideFlags: 0
