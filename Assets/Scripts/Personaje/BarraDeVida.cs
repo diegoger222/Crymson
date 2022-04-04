@@ -31,7 +31,7 @@ public class BarraDeVida : MonoBehaviour
     void Update()
     {
         barraVida.fillAmount = vidaActual / vidaMaxima;
-
+        /*
         if (Input.GetKeyDown("1"))
         {
             
@@ -44,7 +44,8 @@ public class BarraDeVida : MonoBehaviour
             MorePotis(1);
 
         }
-        if (Input.GetKeyDown("3"))
+        */
+        if (Input.GetKeyDown("r"))
         {
             if (n_poti > 0)
             {

@@ -44,5 +44,22 @@ public class HabilidadMovimiento : MonoBehaviour
         {
         return cooldown;
      }
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {/*
+        if(other.tag == "Player")
+        {
+            other.GetComponent<BarraDeVida>().RestarVida(damage);
+        }
+        */
+        if (other.CompareTag("Enemy"))
+        {
+
+            other.GetComponent<Vida>().RecibirDaño(50);
+
+            Destroy(gameObject);
+        }
+
+
+    }
+
 }

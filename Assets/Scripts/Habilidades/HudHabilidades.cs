@@ -39,12 +39,28 @@ public class HudHabilidades : MonoBehaviour
     void Update()
     {
        
-        if (Input.GetKeyDown("l")){
+        if (Input.GetKeyDown("1")){
             UsoHabilidad(0);
         }
-        if (Input.GetKeyDown("k"))
+        if (Input.GetKeyDown("2"))
         {
             UsoHabilidad(1);
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            UsoHabilidad(2);
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            UsoHabilidad(3);
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            UsoHabilidad(4);
+        }
+        if (Input.GetKeyDown("6"))
+        {
+            UsoHabilidad(5);
         }
     }
     public void Iniciar()
