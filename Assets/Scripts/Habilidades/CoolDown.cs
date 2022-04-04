@@ -82,31 +82,11 @@ public class CoolDown : MonoBehaviour
         //}
     }
 
-    public float  GetValorFill()
+ 
+    public bool EnUso(int z)
     {
-        return coolDownFill;
+        return isCoolDowns[z];
     }
-
-    public float GetValorText()
-    {
-        return coolDownText;
-    }
-
-    public bool ISCoolDown()
-    {
-        return iscoolDown;
-    }
-    public void StartTime(Image a,Text b)
-    {
-        fill = a;
-        textN = b;
-        Debug.Log(fill);
-        textN.text = "P";
-       
-        iscoolDown = true;
-       
-    }
-
     public void ResetCoolDown(int z)
     {
         isCoolDowns[z] = false;

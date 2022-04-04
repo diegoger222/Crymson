@@ -73,58 +73,26 @@ public class HudHabilidades : MonoBehaviour
 
     public void UsoHabilidad(int nh)
     {
-        
-        
-        ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = true;
-        ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().enabled = true;
-        //  ListaHabi[nh].habilidadIU.ints
-        if (nh == 0)
-        {
-            GameObject aux = ListaHabi[nh].habilidadIU;
-            aux.transform.rotation = Quaternion.Euler(0, -180, 0);
-            GameObject.Instantiate(aux, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
-        }
-        else
-        {
-            GameObject.Instantiate(ListaHabi[nh].habilidadIU, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
-        }
-        
-        auxCold.GetComponent<CoolDown>().UsoHabilidad(nh);
-       // ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().text = "10"; //transform.GetChild(3).GetComponent<Text>() = 10;
 
-        //  ListaHabi[nh].habilidadIU.GetComponent<CoolDown>().StartTime(ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>(), ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>());
-        // float auxFloat;
-        //Image auxIma = ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>();
-        //Text  auxText = ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>();
-        //auxIma.enabled = true;
-        //auxFloat = 1 / cooldown * Time.deltaTime;
-
-        // if (ListaHabi[nh].habilidadIU.GetComponent<CoolDown>().ISCoolDown())
-        //{
-
-        //   float aux = ListaHabi[nh].habilidadIU.GetComponent<CoolDown>().GetValorFill();
-        //  Debug.Log(aux);
-        // ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().fillAmount = aux;
-        // ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().text = ((int)(ListaHabi[nh].habilidadIU.GetComponent<CoolDown>().GetValorText())).ToString();
-        //  float a = ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().fillAmount;
-        // Debug.Log(a);
-        //poner una variable con Ienumerator para el coldown
-        /*
-        if (a<=0.0f)
+        if (!auxCold.GetComponent<CoolDown>().EnUso(nh))
         {
-            ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().fillAmount = 1;
-            ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = false;
-           // ListaHabi[nh].habilidadIU.GetComponent<CoolDown>().ResetCoolDown();
-            isCooldown = false;
+            ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = true;
+            ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().enabled = true;
+
+            if (nh == 0)
+            {
+                GameObject aux = ListaHabi[nh].habilidadIU;
+                GameObject.Instantiate(aux, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
+            }
+            else
+            {
+                GameObject.Instantiate(ListaHabi[nh].habilidadIU, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
+            }
+
+            auxCold.GetComponent<CoolDown>().UsoHabilidad(nh);
+
         }
-        */
-        /*
-        if (ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().fillAmount <= 0.0f) {
-            ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().fillAmount = 1;
-            ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = false;
-            isCooldown = false;
-        }*/
-        }
+    }
         
 
     }
