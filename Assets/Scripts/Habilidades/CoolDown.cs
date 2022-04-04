@@ -49,7 +49,7 @@ public class CoolDown : MonoBehaviour
           //  coolDownFill ;
           for(int z = 0;z< coolDowns.Count; z++)
             {
-            Debug.Log(z);
+           // Debug.Log(z);
                 if (isCoolDowns[z])
                 {
                 
