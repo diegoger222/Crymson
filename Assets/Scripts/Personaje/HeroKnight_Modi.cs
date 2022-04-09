@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HeroKnight_Modi : MonoBehaviour {
@@ -44,6 +44,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         hitboxespada = espada.GetComponent<BoxCollider2D>();
         hitboxespada.enabled = false;
     }
+
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
     // Update is called once per frame
@@ -242,6 +243,9 @@ public class HeroKnight_Modi : MonoBehaviour {
         {
             this.GetComponent<Experiencia>().ExperienciaPermanente();
             other.gameObject.SetActive(false);
+        }
+        if(other.CompareTag("Enemy")){
+            this.GetComponent<BarraDeVida>().RestarVida(5);
         }
     }
     private void DesactivarAtaque()
