@@ -12,7 +12,11 @@ TagManager:
   - Statsm
   - Arma
   - HudHabilidades
+<<<<<<< Updated upstream
   - Nivel2
+=======
+  - enemySword
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

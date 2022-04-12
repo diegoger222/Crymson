@@ -247,6 +247,9 @@ public class HeroKnight_Modi : MonoBehaviour {
         if(other.CompareTag("Enemy")){
             this.GetComponent<BarraDeVida>().RestarVida(5);
         }
+        if(other.CompareTag("enemySword")){
+            this.GetComponent<BarraDeVida>().RestarVida(5);
+        }
     }
     private void DesactivarAtaque()
     {
