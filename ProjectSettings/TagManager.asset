@@ -12,6 +12,7 @@ TagManager:
   - Statsm
   - Arma
   - HudHabilidades
+  - Nivel2
   layers:
   - Default
   - TransparentFX
