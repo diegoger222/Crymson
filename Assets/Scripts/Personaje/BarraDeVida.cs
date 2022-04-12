@@ -12,6 +12,7 @@ public class BarraDeVida : MonoBehaviour
     public GameObject pantallaMuerte;
     public float vidaMaxima = 100;
     public bool invencible = false;
+    public GameObject puntorevivir;
     private float damage;
     public Text text_poti;
     private int n_poti; //Potis actuales
@@ -25,19 +26,21 @@ public class BarraDeVida : MonoBehaviour
     public Sprite b3;
     public Sprite b4;
     public Sprite b5;
+    private float auxt;
 
 
     // Update is called once per frame
     void Update()
     {
         barraVida.fillAmount = vidaActual / vidaMaxima;
-        /*
-        if (Input.GetKeyDown("1"))
+        
+        if (Input.GetKeyDown("g"))
         {
             
             RestarVida(10);
             
         }
+        /*
         if (Input.GetKeyDown("2"))
         {
 
@@ -139,9 +142,18 @@ public class BarraDeVida : MonoBehaviour
     
     private void Muerte()
     {
-        Time.timeScale = 0;
+        auxt = Time.timeScale;
+       // Time.timeScale = 0;
+        Invoke("Teletrans", 2f);
     }
 
+    private void Teletrans()
+    {
+        Time.timeScale = auxt;
+        this.gameObject.transform.position = puntorevivir.transform.position;
+        vidaActual = 100;
+        m_animator.SetTrigger("Hurt");
+    }
 
     public void SumarPuntosVida(int puntos)
     {
