@@ -23,6 +23,7 @@ public class Enemy_Behaviour : MonoBehaviour
     private bool inRange;
     private bool cooling;
     private float intTimer;
+    private bool vivo = true;
     #endregion
 
     void Awake()
@@ -34,52 +35,55 @@ public class Enemy_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
-        if (inRange)
+        if (vivo)
         {
-            // hit =  Physics2D.Raycast(raycast.position, Vector2.left, raycastLength, raycastMask);
-            // RaycastDebugger();
-            
-            distance = Vector2.Distance(transform.position, target.transform.position);
-            if (distance > attackDistance)
+            target = GameObject.FindGameObjectWithTag("Player");
+            if (inRange)
             {
-                Move();
-                // Move();
-                StopAttack();
+                // hit =  Physics2D.Raycast(raycast.position, Vector2.left, raycastLength, raycastMask);
+                // RaycastDebugger();
 
+                distance = Vector2.Distance(transform.position, target.transform.position);
+                if (distance > attackDistance)
+                {
+                    Move();
+                    // Move();
+                    StopAttack();
+
+                }
+                else if (attackDistance >= distance)
+                {
+                    Attack();
+                }
             }
-            else if (attackDistance >= distance)
+
+            // if(hit.collider !=null){
+            //     EnemyLogic();
+            // }
+            // else if(hit.collider == null){
+            //     inRange = false;
+            // }
+
+            if (inRange == false)
             {
-                Attack();
+                anim.SetBool("canWalk", false);
+                // StopAttack();
             }
-        }
 
-        // if(hit.collider !=null){
-        //     EnemyLogic();
-        // }
-        // else if(hit.collider == null){
-        //     inRange = false;
-        // }
+            float inputX = transform.position.x - target.transform.position.x;
 
-        if (inRange == false)
-        {
-            anim.SetBool("canWalk", false);
-            // StopAttack();
-        }
+            // Swap direction of sprite depending on walk direction
+            if (inputX > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+                m_facingDirection = 1;
+            }
 
-        float inputX = transform.position.x - target.transform.position.x;
-
-        // Swap direction of sprite depending on walk direction
-        if (inputX > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-            m_facingDirection = 1;
-        }
-
-        else if (inputX < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-            m_facingDirection = -1;
+            else if (inputX < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+                m_facingDirection = -1;
+            }
         }
     }
 
@@ -111,7 +115,10 @@ public class Enemy_Behaviour : MonoBehaviour
         }
     }
 
-
+    public void Muerto()
+    {
+        vivo = false;
+    }
     void Attack()
     {
         timer = intTimer;

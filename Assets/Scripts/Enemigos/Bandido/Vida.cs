@@ -33,6 +33,7 @@ public class Vida : MonoBehaviour
 
         if(vida_Act <= 0)
         {
+            this.GetComponent<Enemy_Behaviour>().Muerto();
             m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
             m_collider.enabled = false;
         }
