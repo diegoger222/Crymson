@@ -244,9 +244,10 @@ public class HeroKnight_Modi : MonoBehaviour {
             this.GetComponent<Experiencia>().ExperienciaPermanente();
             other.gameObject.SetActive(false);
         }
+        /*
         if(other.CompareTag("Enemy")){
             this.GetComponent<BarraDeVida>().RestarVida(5);
-        }
+        }*/
         if(other.CompareTag("enemySword")){
             this.GetComponent<BarraDeVida>().RestarVida(5);
         }

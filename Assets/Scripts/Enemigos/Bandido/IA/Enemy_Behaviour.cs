@@ -34,6 +34,7 @@ public class Enemy_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         if (inRange)
         {
             // hit =  Physics2D.Raycast(raycast.position, Vector2.left, raycastLength, raycastMask);
