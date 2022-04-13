@@ -30,6 +30,13 @@ public class TestAlexey : MonoBehaviour
             }
             dialog.SetActive(true);
         }
+
+        if (other.CompareTag("Tutorial"))
+        {
+            DialogueTrigger trigger = other.gameObject.GetComponent<DialogueTrigger>();
+            other.gameObject.SetActive(false);
+            trigger.TriggerDialogue();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

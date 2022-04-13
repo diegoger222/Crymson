@@ -4,19 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Poti
-  - Enemy
-  - SubidaNivel
-  - Pickable
-  - InvPru
-  - Statsm
   - Arma
-  - HudHabilidades
-<<<<<<< Updated upstream
+  - SubidaNivel
   - Nivel2
-=======
+  - InvPru
+  - Poti
   - enemySword
->>>>>>> Stashed changes
+  - HudHabilidades
+  - Statsm
+  - Pickable
+  - Enemy
+  - Tutorial
   layers:
   - Default
   - TransparentFX
@@ -26,9 +24,9 @@ TagManager:
   - UI
   - 
   - 
-  - Objetos
-  - Consumibles
-  - Enemy
+  - 
+  - 
+  - 
   - 
   - 
   - 
