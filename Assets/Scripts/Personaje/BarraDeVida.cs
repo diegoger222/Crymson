@@ -87,6 +87,7 @@ public class BarraDeVida : MonoBehaviour
                 //sonidoJugador.StopPlayAllSounds();
                 m_animator.SetBool("noBlood", m_noBlood);
                 m_animator.SetTrigger("Death");
+                this.GetComponent<HeroKnight_Modi>().MuerteP(false);
                 Invoke("Muerte", 2f);
                 
               
@@ -151,6 +152,7 @@ public class BarraDeVida : MonoBehaviour
     {
         Time.timeScale = auxt;
         this.gameObject.transform.position = puntorevivir.transform.position;
+        this.GetComponent<HeroKnight_Modi>().MuerteP(true);
         vidaActual = 100;
         m_animator.SetTrigger("Hurt");
     }
