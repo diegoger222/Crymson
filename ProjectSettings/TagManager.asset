@@ -15,6 +15,7 @@ TagManager:
   - Pickable
   - Enemy
   - Tutorial
+  - Segador
   layers:
   - Default
   - TransparentFX
