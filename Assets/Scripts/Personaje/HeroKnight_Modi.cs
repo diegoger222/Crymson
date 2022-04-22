@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class HeroKnight_Modi : MonoBehaviour {
@@ -20,6 +20,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
+    private bool                m_attacking = false;
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
@@ -83,21 +84,21 @@ public class HeroKnight_Modi : MonoBehaviour {
             float inputX = Input.GetAxis("Horizontal");
 
             // Swap direction of sprite depending on walk direction
-            if (inputX > 0)
+            if (!m_rolling && inputX > 0)
             {
                 GetComponent<SpriteRenderer>().flipX = false;
                 espada.transform.rotation = Quaternion.Euler(0, 0, 0);
                 m_facingDirection = 1;
             }
 
-            else if (inputX < 0)
+            else if (!m_rolling && inputX < 0)
             {
                 GetComponent<SpriteRenderer>().flipX = true;
                 espada.transform.rotation = Quaternion.Euler(0, -180, 0);
                 m_facingDirection = -1;
             }
 
-            // Move
+            // Move (mando)
             if (!m_rolling && !m_animator.GetBool("IdleBlock"))
                 m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
 
@@ -120,9 +121,10 @@ public class HeroKnight_Modi : MonoBehaviour {
             else if (Input.GetKeyDown("q") && !m_rolling)
                 m_animator.SetTrigger("Hurt");
 
-            //Attack
-            else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
+            //Attack (mando)
+            else if (Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
             {
+                m_attacking = true;
                 m_currentAttack++;
                 hitboxespada.enabled = true;
                 Invoke("DesactivarAtaque", 0.7f);
@@ -142,18 +144,18 @@ public class HeroKnight_Modi : MonoBehaviour {
                 m_timeSinceAttack = 0.0f;
             }
 
-            // Block
-            else if (Input.GetMouseButtonDown(1) && !m_rolling)
+            // Block (mando)
+            else if (Input.GetButtonDown("Bloquear") && !m_rolling)
             {
                 m_animator.SetTrigger("Block");
                 m_animator.SetBool("IdleBlock", true);
             }
 
-            else if (Input.GetMouseButtonUp(1))
+            else if (Input.GetButtonUp("Bloquear"))
                 m_animator.SetBool("IdleBlock", false);
 
-            // Roll
-            else if (m_grounded && Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+            // Roll (mando)
+            else if (m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(30f);
                 m_rolling = true;
@@ -162,8 +164,8 @@ public class HeroKnight_Modi : MonoBehaviour {
             }
 
 
-            //Jump
-            else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
+            //Jump (mando)
+            else if (Input.GetButtonDown("Saltar") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(10f);
                 m_animator.SetTrigger("Jump");

@@ -66,7 +66,7 @@ public class Stamina : MonoBehaviour
 
     private IEnumerator RegenStamina()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         while(currentStamina < maxStamina)
         {
