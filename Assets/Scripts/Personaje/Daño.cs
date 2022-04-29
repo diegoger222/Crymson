@@ -24,7 +24,12 @@ public class Daño : MonoBehaviour
             
             other.GetComponent<Vida>().RecibirDaño(damage + bonusDamage);
         }
-     
+        if (other.CompareTag("Segador"))
+        {
+            other.GetComponent<VidaJefe>().RecibirDaño(damage + bonusDamage);
+        }
+
+
 
     }
 

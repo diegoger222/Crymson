@@ -46,7 +46,9 @@ public class Combate : MonoBehaviour
                 if (distanciaJugador > attackDistance)
                 {
 
-                     Move();
+                    Move();
+                  
+                    this.GetComponent<VidaJefe>().ActivarHudVida();
 
 
                 }
@@ -111,6 +113,8 @@ public class Combate : MonoBehaviour
     public void Muerto()
     {
         vivo = false;
+        animator.SetTrigger("Muerte");
+        Invoke("AnimMuerte", 4);
     }
 
     void Move()
@@ -122,5 +126,10 @@ public class Combate : MonoBehaviour
             Vector2 targetPosition = new Vector2(target.transform.position.x, target.transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
+    }
+
+    void AnimMuerte()
+    {
+        this.gameObject.SetActive(false);
     }
 }
