@@ -27,7 +27,9 @@ public class BarraDeVida : MonoBehaviour
     public Sprite b4;
     public Sprite b5;
     private float auxt;
-
+   // [SerializeField] private float tiempoInmune;
+  //  private float tiempoInmuneaux;
+    private bool escudo = false;
 
     // Update is called once per frame
     void Update()
@@ -58,8 +60,16 @@ public class BarraDeVida : MonoBehaviour
                 ActualizarImagenPoti();
             }
         }
-        
-
+        /*
+        if (tiempoInmuneaux > 0)
+        {
+            tiempoInmuneaux -= Time.deltaTime;
+        }
+        else
+        {
+            escudo = false;
+        }
+        */
     }
 
     private void Start()
@@ -75,7 +85,7 @@ public class BarraDeVida : MonoBehaviour
     public void RestarVida(float cantidad)
     {
         //damage = cantidad;
-        if (!invencible && vidaActual > 0)
+        if (!invencible && vidaActual > 0 && !escudo)
         {
      
 
@@ -103,6 +113,17 @@ public class BarraDeVida : MonoBehaviour
         }
     }
     //parte de las potis
+
+    public void ActivarInmune()
+    {
+       // tiempoInmuneaux = tiempoInmune;
+        escudo = true;
+    }
+
+    public void DesactivarInmune()
+    {
+        escudo = false;
+    }
     public void MorePotis(int numero)
     {
         n_poti += numero;

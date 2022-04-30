@@ -154,11 +154,14 @@ public class HeroKnight_Modi : MonoBehaviour {
             {
                 m_animator.SetTrigger("Block");
                 m_animator.SetBool("IdleBlock", true);
+                this.GetComponent<BarraDeVida>().ActivarInmune();
             }
 
             else if (Input.GetButtonUp("Bloquear"))
+            {
                 m_animator.SetBool("IdleBlock", false);
-
+                this.GetComponent<BarraDeVida>().DesactivarInmune();
+            }
             // Roll (mando)
             else if (m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
             {
