@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - Tutorial
   - Segador
+  - HudV
   layers:
   - Default
   - TransparentFX

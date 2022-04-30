@@ -31,7 +31,10 @@ public class HeroKnight_Modi : MonoBehaviour {
     public GameObject espada;
     private bool invencible = false;
     private bool vivoPlayer = true;
-
+    [SerializeField] private GameObject hud1;
+    [SerializeField] private GameObject hud2;
+    [SerializeField] private GameObject hud3;
+    private bool hudAc = false;
 
     // Use this for initialization
     void Start ()
@@ -46,6 +49,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight_Modi>();
         hitboxespada = espada.GetComponent<BoxCollider2D>();
         hitboxespada.enabled = false;
+        
     }
 
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
@@ -55,6 +59,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     {
         if (vivoPlayer)
         {
+            GetHudV();
             // Increase timer that controls attack combo
             m_timeSinceAttack += Time.deltaTime;
 
@@ -122,7 +127,7 @@ public class HeroKnight_Modi : MonoBehaviour {
                 m_animator.SetTrigger("Hurt");
 
             //Attack (mando)
-            else if (Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
             {
                 m_attacking = true;
                 m_currentAttack++;
@@ -290,5 +295,19 @@ public class HeroKnight_Modi : MonoBehaviour {
         invencible = true;
         yield return new WaitForSeconds(1f);
         invencible = false;
+    }
+
+    public void GetHudV()
+    {
+        if (hud1.activeSelf || hud2.activeSelf || hud3.activeSelf)
+        {
+            hudAc = true;
+        }
+        else
+        {
+            hudAc = false;
+        }
+       
+       
     }
 }
