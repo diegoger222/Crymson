@@ -10,6 +10,8 @@ public class HudHabilidades : MonoBehaviour
     public bool isCooldown = true;
     public GameObject auxCold;
     public List<GameObject> Habilidades = new List<GameObject>();
+    private bool Mana;
+    public int costeMana = 30;
     public class HabilU
     {
         public GameObject SlotIU { get; set; }
@@ -38,29 +40,40 @@ public class HudHabilidades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if (Input.GetKeyDown("1")){
-            UsoHabilidad(0);
-        }
-        if (Input.GetKeyDown("2"))
+
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
         {
-            UsoHabilidad(1);
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            UsoHabilidad(2);
-        }
-        if (Input.GetKeyDown("4"))
-        {
-            UsoHabilidad(3);
-        }
-        if (Input.GetKeyDown("5"))
-        {
-            UsoHabilidad(4);
-        }
-        if (Input.GetKeyDown("6"))
-        {
-            UsoHabilidad(5);
+            if (Input.GetKeyDown("1"))
+            {
+                
+                UsoHabilidad(0);
+               
+            }
+            if (Input.GetKeyDown("2"))
+            {
+                
+                UsoHabilidad(1);
+            }
+            if (Input.GetKeyDown("3"))
+            {
+               
+                UsoHabilidad(2);
+            }
+            if (Input.GetKeyDown("4"))
+            {
+                
+                UsoHabilidad(3);
+            }
+            if (Input.GetKeyDown("5"))
+            {
+            
+                UsoHabilidad(4);
+            }
+            if (Input.GetKeyDown("6"))
+            {
+              
+                UsoHabilidad(5);
+            }
         }
     }
     public void Iniciar()
@@ -94,7 +107,7 @@ public class HudHabilidades : MonoBehaviour
         {
             ListaHabi[nh].SlotIU.transform.GetChild(3).GetComponent<Text>().enabled = true;
             ListaHabi[nh].SlotIU.transform.GetChild(1).GetComponent<Image>().enabled = true;
-
+            this.GetComponent<Mana>().UsarMana(costeMana);
             if (nh == 0)
             {
                 GameObject aux = ListaHabi[nh].habilidadIU;
