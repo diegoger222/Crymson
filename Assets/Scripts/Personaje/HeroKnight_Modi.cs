@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HeroKnight_Modi : MonoBehaviour {
+public class HeroKnight_Modi : MonoBehaviour
+{
 
-    [SerializeField] float      m_speed = 4.0f;
-    [SerializeField] float      m_jumpForce = 7.5f;
-    [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
     [SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
@@ -64,7 +61,6 @@ public class HeroKnight_Modi : MonoBehaviour {
     private bool hudAc = false;
 
     // Use this for initialization
-    void Start ()
     void Start()
     {
         Debug.Log("Comprueba si hay mandos");
@@ -89,14 +85,12 @@ public class HeroKnight_Modi : MonoBehaviour {
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight_Modi>();
         hitboxespada = espada.GetComponent<BoxCollider2D>();
         hitboxespada.enabled = false;
-        
 
     }
 
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
     // Update is called once per frame
-    void Update ()
     void Update()
     {
         float GatilloIzquierdo = Input.GetAxis("GatilloI");
@@ -270,7 +264,6 @@ public class HeroKnight_Modi : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
 
 
     }
@@ -311,13 +304,11 @@ public class HeroKnight_Modi : MonoBehaviour {
             StartCoroutine(FrenarNasus());
             if (other.CompareTag("Enemy"))
             {
-                this.GetComponent<BarraDeVida>().RestarVida(10);
+                Debug.Log("Me choco contra el enemigo");
+                this.GetComponent<BarraDeVida>().RestarVida(15);
             }
 
 
-        }
-        if(other.CompareTag("enemySword")){
-            this.GetComponent<BarraDeVida>().RestarVida(5);
         }
         // if (other.CompareTag("enemySword"))
         // {
@@ -342,7 +333,6 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
     }
 
-    public void  MuerteP(bool a)
     public void MuerteP(bool a)
     {
         vivoPlayer = a;
@@ -365,8 +355,6 @@ public class HeroKnight_Modi : MonoBehaviour {
         {
             hudAc = false;
         }
-       
-       
 
 
     }
