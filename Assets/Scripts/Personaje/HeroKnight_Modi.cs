@@ -7,8 +7,13 @@ public class HeroKnight_Modi : MonoBehaviour {
     [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
+    [SerializeField] float m_speed = 4.0f;
+    [SerializeField] float m_jumpForce = 7.5f;
+    [SerializeField] float m_rollForce = 6.0f;
+    [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
+<<<<<<< Updated upstream
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
     private BoxCollider2D       m_collider;
@@ -29,6 +34,26 @@ public class HeroKnight_Modi : MonoBehaviour {
     private float               m_rollCurrentTime;
     private bool                hayMando = false;
     public GameObject menu;
+=======
+    private Animator m_animator;
+    private Rigidbody2D m_body2d;
+    private BoxCollider2D m_collider;
+    private Sensor_HeroKnight_Modi m_groundSensor;
+    private Sensor_HeroKnight_Modi m_wallSensorR1;
+    private Sensor_HeroKnight_Modi m_wallSensorR2;
+    private Sensor_HeroKnight_Modi m_wallSensorL1;
+    private Sensor_HeroKnight_Modi m_wallSensorL2;
+    private bool m_isWallSliding = false;
+    private bool m_grounded = false;
+    private bool m_rolling = false;
+    private bool m_attacking = false;
+    private int m_facingDirection = 1;
+    private int m_currentAttack = 0;
+    private float m_timeSinceAttack = 0.0f;
+    private float m_delayToIdle = 0.0f;
+    private float m_rollDuration = 8.0f / 14.0f;
+    private float m_rollCurrentTime;
+>>>>>>> Stashed changes
     private BoxCollider2D hitboxespada;
     public GameObject espada;
     private bool invencible = false;
@@ -40,6 +65,7 @@ public class HeroKnight_Modi : MonoBehaviour {
 
     // Use this for initialization
     void Start ()
+    void Start()
     {
         Debug.Log("Comprueba si hay mandos");
         string[] listaMandos = Input.GetJoystickNames();
@@ -64,12 +90,14 @@ public class HeroKnight_Modi : MonoBehaviour {
         hitboxespada = espada.GetComponent<BoxCollider2D>();
         hitboxespada.enabled = false;
         
+
     }
 
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
     // Update is called once per frame
     void Update ()
+    void Update()
     {
         float GatilloIzquierdo = Input.GetAxis("GatilloI");
         if (vivoPlayer && !menu.activeSelf)
@@ -244,6 +272,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     {
         
 
+
     }
     // Animation Events
     // Called in slide animation.
@@ -278,15 +307,23 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
         if (!invencible)
         {
+
             StartCoroutine(FrenarNasus());
             if (other.CompareTag("Enemy"))
             {
                 this.GetComponent<BarraDeVida>().RestarVida(10);
             }
+
+
         }
         if(other.CompareTag("enemySword")){
             this.GetComponent<BarraDeVida>().RestarVida(5);
         }
+        // if (other.CompareTag("enemySword"))
+        // {
+        //     Debug.Log("Me pega la espada");
+        //     this.GetComponent<BarraDeVida>().RestarVida(200);
+        // }
     }
     private void DesactivarAtaque()
     {
@@ -306,6 +343,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     }
 
     public void  MuerteP(bool a)
+    public void MuerteP(bool a)
     {
         vivoPlayer = a;
     }
@@ -329,5 +367,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
        
        
+
+
     }
 }

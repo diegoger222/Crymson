@@ -11,6 +11,9 @@ public class Enemy_Behaviour : MonoBehaviour
     public float attackDistance;
     public float moveSpeed;
     public float timer;
+    private BoxCollider2D hitboxespada;
+    public GameObject espada;
+    public GameObject heroKnight;
     #endregion
 
     #region Private variables
@@ -28,41 +31,46 @@ public class Enemy_Behaviour : MonoBehaviour
 
     void Awake()
     {
-        intTimer = timer;
+        intTimer = -1;
         anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        hitboxespada = espada.GetComponent<BoxCollider2D>();
+        hitboxespada.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (vivo)
         {
             target = GameObject.FindGameObjectWithTag("Player");
+
             if (inRange)
             {
-                // hit =  Physics2D.Raycast(raycast.position, Vector2.left, raycastLength, raycastMask);
-                // RaycastDebugger();
 
                 distance = Vector2.Distance(transform.position, target.transform.position);
+
                 if (distance > attackDistance)
                 {
                     Move();
-                    // Move();
-                    StopAttack();
+                    // StopAttack(); /7aqui
 
                 }
                 else if (attackDistance >= distance)
                 {
-                    Attack();
+
+                    if ( intTimer <= 0)
+                    {
+                        Attack();
+                    }
+                    intTimer -= Time.deltaTime;
                 }
             }
-
-            // if(hit.collider !=null){
-            //     EnemyLogic();
-            // }
-            // else if(hit.collider == null){
-            //     inRange = false;
-            // }
 
             if (inRange == false)
             {
@@ -87,23 +95,6 @@ public class Enemy_Behaviour : MonoBehaviour
         }
     }
 
-    // void EnemyLogic()
-    // {
-    //     distance = Vector2.Distance(transform.position, target.transform.position);
-    //     if (distance > attackDistance)
-    //     {
-    //         // Move();
-    //         StopAttack();
-    //     }
-    //     else if (attackDistance >= distance)
-    //     {
-    //         Attack();
-    //     }
-    //     // && cooling == false
-    //     // if(cooling){
-    //     //     anim.SetBool("Attack2", false);
-    //     // }
-    // }
 
     void Move()
     {
@@ -121,15 +112,21 @@ public class Enemy_Behaviour : MonoBehaviour
     }
     void Attack()
     {
-        timer = intTimer;
+        anim.SetBool("Attack2", true);
+        hitboxespada.enabled = true;
+        // yield return new WaitForSeconds(0.1f);
+        Debug.Log("Daño al enemigo");
+        heroKnight.GetComponent<BarraDeVida>().RestarVida(15);
+        Invoke("StopAttack", 0.8f); ///alknflñsadhnf jñkashfd ñahsdñlfahdñlfhasdlñkfhjjañokjfjh añlkjhj
+        intTimer = timer;
         attackMode = true;
 
-        // anim.SetBool("canWalk", false);
-        anim.SetBool("Attack2", true);
     }
+
 
     void StopAttack()
     {
+        hitboxespada.enabled = false;
         cooling = false;
         attackMode = false;
         anim.SetBool("Attack2", false);
@@ -146,7 +143,7 @@ public class Enemy_Behaviour : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D trig)
     {
-        if (trig.gameObject.tag == "Player")
+        if (trig.gameObject.tag == "Player" && distance > 1.5)
         {
             target = trig.gameObject;
             anim.SetBool("canWalk", false);
@@ -154,15 +151,15 @@ public class Enemy_Behaviour : MonoBehaviour
         }
     }
 
-    void RaycastDebugger()
-    {
-        if (distance > attackDistance)
-        {
-            Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.red);
-        }
-        else if (attackDistance > distance)
-        {
-            Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.green);
-        }
-    }
+    // void RaycastDebugger()
+    // {
+    //     if (distance > attackDistance)
+    //     {
+    //         Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.red);
+    //     }
+    //     else if (attackDistance > distance)
+    //     {
+    //         Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.green);
+    //     }
+    // }
 }
