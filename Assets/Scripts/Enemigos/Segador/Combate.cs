@@ -9,7 +9,7 @@ public class Combate : MonoBehaviour
 
     [SerializeField] private float radioGolpe;
 
-    [SerializeField] private float dañoGolpe;
+    [SerializeField] private float daï¿½oGolpe;
 
     [SerializeField] private float tiempoEntreAtaques;
 

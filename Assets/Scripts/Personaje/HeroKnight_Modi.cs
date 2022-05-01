@@ -69,7 +69,7 @@ public class HeroKnight_Modi : MonoBehaviour
 
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
-    // Update is called once per frame
+    // Update se llama una vez por frame
     void Update()
     {
         float GatilloIzquierdo = Input.GetAxis("GatilloI");
