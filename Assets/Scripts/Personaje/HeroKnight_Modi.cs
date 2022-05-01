@@ -26,7 +26,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
-    private float               m_rollCurrentTime;
+    private float               m_rollCurrentTime = 0f;
     private BoxCollider2D hitboxespada;
     public GameObject espada;
     private bool invencible = false;
@@ -202,7 +202,7 @@ public class HeroKnight_Modi : MonoBehaviour {
             //If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
             if (m_rolling)
             {
-                Debug.Log("Está rolling");
+                Debug.Log(m_collider.enabled);
                 m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
                 m_collider.enabled = false;
             }
