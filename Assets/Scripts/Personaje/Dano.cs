@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Daño : MonoBehaviour
+public class Dano : MonoBehaviour
 {
     public int damage = 30;
     public float stunSec = 1.5f;

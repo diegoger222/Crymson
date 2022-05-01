@@ -26,7 +26,7 @@ public class Palanca : MonoBehaviour
         {
             Elevador.GetComponent<Elevador>().Palanca();
             if (aux) {
-              // transform.rotation = Quaternion.Euler(0, -180, 0);
+               Elevador.transform.rotation = Quaternion.Euler(0, -180, 0);
             }
         }
     }

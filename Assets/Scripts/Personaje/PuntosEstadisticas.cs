@@ -146,7 +146,7 @@ public class PuntosEstadisticas : MonoBehaviour
         }
         if(puntosEnDano > 0)
         {
-            arma.GetComponent<Daño>().SumarDamage(-puntosEnDano);
+            arma.GetComponent<Dano>().SumarDamage(-puntosEnDano);
             puntosEnDano = 0;
         }
     }
@@ -208,7 +208,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDano++;
         puntosUsados++;
         puntosDisponibles--;
-        arma.GetComponent<Daño>().SumarDamage(1);
+        arma.GetComponent<Dano>().SumarDamage(1);
     }
     
     public void PuntoMenosFuerza()
@@ -216,7 +216,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDano--;
         puntosUsados--;
         puntosDisponibles++;
-        arma.GetComponent<Daño>().SumarDamage(-1);
+        arma.GetComponent<Dano>().SumarDamage(-1);
 
     }
     public void ActivarStats()

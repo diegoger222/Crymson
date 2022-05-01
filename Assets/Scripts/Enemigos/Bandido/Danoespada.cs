@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dañoespada : MonoBehaviour
+public class Danoespada : MonoBehaviour
 {
     // Start is called before the first frame update
    
