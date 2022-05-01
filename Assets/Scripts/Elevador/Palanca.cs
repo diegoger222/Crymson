@@ -7,10 +7,12 @@ public class Palanca : MonoBehaviour
 {
     private bool aux = true;
     public GameObject Elevador;
+    public GameObject Pala;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Pala.transform.rotation = Quaternion.Euler(0, -180, 0);
+       // Pala.transform.position = new Vector3(0.548f, -2.019f, 0.56f);
     }
 
     // Update is called once per frame
@@ -19,14 +21,21 @@ public class Palanca : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   
+    public void OnTriggerEnter2D(Collider2D collision)
     {
 
         if(collision.gameObject.tag== "Arma")
         {
             Elevador.GetComponent<Elevador>().Palanca();
             if (aux) {
-               Elevador.transform.rotation = Quaternion.Euler(0, -180, 0);
+                //Pala.transform.rotation = Quaternion.Euler(0, -180, -42.012f);
+                aux = false;
+            }
+            else
+            {
+              // Pala.transform.rotation = Quaternion.Euler(0, 0, -42.012f);
+                aux = true;
             }
         }
     }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class HudHabilidades : MonoBehaviour
 {
@@ -76,6 +78,49 @@ public class HudHabilidades : MonoBehaviour
             }
         }
     }
+
+    public void Habilidad1()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(0);
+        }
+    }
+    public void Habilidad2()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(1);
+        }
+    }
+    public void Habilidad3()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(2);
+        }
+    }
+    public void Habilidad4()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(3);
+        }
+    }
+    public void Habilidad5()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(4);
+        }
+    }
+    public void Habilidad6()
+    {
+        if (this.GetComponent<Mana>().ReturnMana() > costeMana)
+        {
+            UsoHabilidad(5);
+        }
+    }
     public void Iniciar()
     {
         for(int a = 0; a < 6; a++)
@@ -97,6 +142,7 @@ public class HudHabilidades : MonoBehaviour
         }
        
     }
+    
 
 
 
