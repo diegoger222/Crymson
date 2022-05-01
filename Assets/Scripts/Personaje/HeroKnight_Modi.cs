@@ -71,6 +71,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        float GatilloIzquierdo = Input.GetAxis("GatilloI");
         if (vivoPlayer && !menu.activeSelf)
         {
             GetHudV();
@@ -141,7 +142,7 @@ public class HeroKnight_Modi : MonoBehaviour {
                 m_animator.SetTrigger("Hurt");
 
             //Attack (mando)
-            else if (Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
             {
                 m_attacking = true;
                 m_currentAttack++;
@@ -164,7 +165,7 @@ public class HeroKnight_Modi : MonoBehaviour {
             }
 
             // Block (mando)
-            else if (Input.GetButtonDown("Bloquear") && !m_rolling)
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Bloquear") && !m_rolling)
             {
                 m_animator.SetTrigger("Block");
                 m_animator.SetBool("IdleBlock", true);
@@ -177,7 +178,7 @@ public class HeroKnight_Modi : MonoBehaviour {
                 this.GetComponent<BarraDeVida>().DesactivarInmune();
             }
             // Roll (mando)
-            else if (m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (!(GatilloIzquierdo > 0.5f) && m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(30f);
                 m_rolling = true;
@@ -187,7 +188,7 @@ public class HeroKnight_Modi : MonoBehaviour {
 
 
             //Jump (mando)
-            else if (Input.GetButtonDown("Saltar") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Saltar") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(10f);
                 m_animator.SetTrigger("Jump");

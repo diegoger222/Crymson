@@ -58,12 +58,24 @@ public class HudHabilidades : MonoBehaviour
     {
         float GatilloIzquierdo = Input.GetAxis("GatilloI");
         /* if (GatilloIzquierdo > 0.5f) Debug.Log("Gatillo izquierdo apretado"); */ //¡¡Funciona!!
-        if (GatilloIzquierdo > 0.5f) { //para seleccionar habilidad con la cruceta mientras se aprieta el gatillo
-        
-        }
-
         if (this.GetComponent<Mana>().ReturnMana() > costeMana)
         {
+            //Mando
+            if (GatilloIzquierdo > 0.5f) { //para lanzar la habilidad con los botones A, X, Y y B
+                if (Input.GetKeyDown("joystick button 0")) {
+                    UsoHabilidad(0);
+                }
+                if (Input.GetKeyDown("joystick button 1")) {
+                    UsoHabilidad(1);
+                }
+                if (Input.GetKeyDown("joystick button 2")) {
+                    UsoHabilidad(2);
+                }
+                if (Input.GetKeyDown("joystick button 3")) {
+                    UsoHabilidad(3);
+                }
+            }
+
             if (Input.GetKeyDown("1"))
             {
                 

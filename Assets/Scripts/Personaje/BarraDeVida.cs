@@ -50,6 +50,7 @@ public class BarraDeVida : MonoBehaviour
 
         }
         */
+        //Curarse "frasco estus" (mando)
         if (Input.GetKeyDown("r"))
         {
             if (n_poti > 0)
