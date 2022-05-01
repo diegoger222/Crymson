@@ -119,7 +119,7 @@ public class Combate : MonoBehaviour
 
     void Move()
     {
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("nor"));
+       // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("nor"));
        // anim.SetBool("canWalk", true);
         if (animator.GetCurrentAnimatorStateInfo(0).IsTag("nor"))
         {
