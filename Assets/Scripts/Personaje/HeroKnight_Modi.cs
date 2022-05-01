@@ -10,7 +10,6 @@ public class HeroKnight_Modi : MonoBehaviour
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
-<<<<<<< Updated upstream
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
     private BoxCollider2D       m_collider;
@@ -31,26 +30,6 @@ public class HeroKnight_Modi : MonoBehaviour
     private float               m_rollCurrentTime;
     private bool                hayMando = false;
     public GameObject menu;
-=======
-    private Animator m_animator;
-    private Rigidbody2D m_body2d;
-    private BoxCollider2D m_collider;
-    private Sensor_HeroKnight_Modi m_groundSensor;
-    private Sensor_HeroKnight_Modi m_wallSensorR1;
-    private Sensor_HeroKnight_Modi m_wallSensorR2;
-    private Sensor_HeroKnight_Modi m_wallSensorL1;
-    private Sensor_HeroKnight_Modi m_wallSensorL2;
-    private bool m_isWallSliding = false;
-    private bool m_grounded = false;
-    private bool m_rolling = false;
-    private bool m_attacking = false;
-    private int m_facingDirection = 1;
-    private int m_currentAttack = 0;
-    private float m_timeSinceAttack = 0.0f;
-    private float m_delayToIdle = 0.0f;
-    private float m_rollDuration = 8.0f / 14.0f;
-    private float m_rollCurrentTime;
->>>>>>> Stashed changes
     private BoxCollider2D hitboxespada;
     public GameObject espada;
     private bool invencible = false;
