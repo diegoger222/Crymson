@@ -116,7 +116,7 @@ public class PuntosEstadisticas : MonoBehaviour
         }
     }
 
-    public void SubirPuntos() //esta funcion es llamada desde Experiencia cuando se sube de nivel para aÒadir puntos;
+    public void SubirPuntos() //esta funcion es llamada desde Experiencia cuando se sube de nivel para aÔøΩadir puntos;
     {
         puntosDisponibles++;
         puntosMaxDisponibles++;
@@ -146,7 +146,7 @@ public class PuntosEstadisticas : MonoBehaviour
         }
         if(puntosEnDano > 0)
         {
-            arma.GetComponent<DaÒo>().SumarDamage(-puntosEnDano);
+            arma.GetComponent<Dano>().SumarDamage(-puntosEnDano);
             puntosEnDano = 0;
         }
     }
@@ -208,7 +208,7 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDano++;
         puntosUsados++;
         puntosDisponibles--;
-        arma.GetComponent<DaÒo>().SumarDamage(1);
+        arma.GetComponent<Dano>().SumarDamage(1);
     }
     
     public void PuntoMenosFuerza()
@@ -216,18 +216,17 @@ public class PuntosEstadisticas : MonoBehaviour
         puntosEnDano--;
         puntosUsados--;
         puntosDisponibles++;
-        arma.GetComponent<DaÒo>().SumarDamage(-1);
+        arma.GetComponent<Dano>().SumarDamage(-1);
 
     }
+    //Men√∫ de habilidades (mando).
     public void ActivarStats()
     {
-        
-            if (Input.GetKeyDown("p"))
-                if (iUstats.activeSelf)
-                    iUstats.SetActive(false);
-                else
-                    iUstats.SetActive(true);
-        
+        if (Input.GetButtonDown("MenuHabilidades"))
+            if (iUstats.activeSelf)
+                iUstats.SetActive(false);
+            else
+                iUstats.SetActive(true);
     }
     
 }

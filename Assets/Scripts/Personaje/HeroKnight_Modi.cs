@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HeroKnight_Modi : MonoBehaviour {
+public class HeroKnight_Modi : MonoBehaviour
+{
 
-    [SerializeField] float      m_speed = 4.0f;
-    [SerializeField] float      m_jumpForce = 7.5f;
-    [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
+    [SerializeField] float m_speed = 4.0f;
+    [SerializeField] float m_jumpForce = 7.5f;
+    [SerializeField] float m_rollForce = 6.0f;
+    [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
     private Animator            m_animator;
@@ -26,16 +27,34 @@ public class HeroKnight_Modi : MonoBehaviour {
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
+
     private float               m_rollCurrentTime = 0f;
+    private bool                hayMando = false;
+    public GameObject menu;
     private BoxCollider2D hitboxespada;
     public GameObject espada;
     private bool invencible = false;
     private bool vivoPlayer = true;
-
+    [SerializeField] private GameObject hud1;
+    [SerializeField] private GameObject hud2;
+    [SerializeField] private GameObject hud3;
+    private bool hudAc = false;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
+        Debug.Log("Comprueba si hay mandos");
+        string[] listaMandos = Input.GetJoystickNames();
+        string mandos = "";
+        for (int i = listaMandos.Length - 1; i >= 0; i--) {
+            mandos += listaMandos[i];
+            if (mandos.Length >= 10) {
+                hayMando = true;
+                Debug.Log("Hay mando");
+                break;
+            }
+        }
+
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
@@ -46,15 +65,18 @@ public class HeroKnight_Modi : MonoBehaviour {
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight_Modi>();
         hitboxespada = espada.GetComponent<BoxCollider2D>();
         hitboxespada.enabled = false;
+
     }
 
     // (1 < this.GetComponent<Stamina>().ReturnStamina())  comprobar si hay stamina
     //this.GetComponent<Stamina>().UsarStamina(0.40f);   restar stamina
-    // Update is called once per frame
-    void Update ()
+    // Update se llama una vez por frame
+    void Update()
     {
-        if (vivoPlayer)
+        float GatilloIzquierdo = Input.GetAxis("GatilloI");
+        if (vivoPlayer && !menu.activeSelf)
         {
+            GetHudV();
             // Increase timer that controls attack combo
             m_timeSinceAttack += Time.deltaTime;
 
@@ -122,7 +144,7 @@ public class HeroKnight_Modi : MonoBehaviour {
                 m_animator.SetTrigger("Hurt");
 
             //Attack (mando)
-            else if (Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
             {
                 m_attacking = true;
                 m_currentAttack++;
@@ -145,17 +167,20 @@ public class HeroKnight_Modi : MonoBehaviour {
             }
 
             // Block (mando)
-            else if (Input.GetButtonDown("Bloquear") && !m_rolling)
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Bloquear") && !m_rolling)
             {
                 m_animator.SetTrigger("Block");
                 m_animator.SetBool("IdleBlock", true);
+                this.GetComponent<BarraDeVida>().ActivarInmune();
             }
 
             else if (Input.GetButtonUp("Bloquear"))
+            {
                 m_animator.SetBool("IdleBlock", false);
-
+                this.GetComponent<BarraDeVida>().DesactivarInmune();
+            }
             // Roll (mando)
-            else if (m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (!(GatilloIzquierdo > 0.5f) && m_grounded && Input.GetButtonDown("Rodar") && !m_rolling && !m_isWallSliding && (5 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(30f);
                 m_rolling = true;
@@ -165,7 +190,7 @@ public class HeroKnight_Modi : MonoBehaviour {
 
 
             //Jump (mando)
-            else if (Input.GetButtonDown("Saltar") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Saltar") && m_grounded && !m_rolling && (10 < this.GetComponent<Stamina>().ReturnStamina()))
             {
                 this.GetComponent<Stamina>().UsarStamina(10f);
                 m_animator.SetTrigger("Jump");
@@ -214,10 +239,12 @@ public class HeroKnight_Modi : MonoBehaviour {
             }
         }
     }
+    
+    
 
     void FixedUpdate()
     {
-        
+
 
     }
     // Animation Events
@@ -253,15 +280,21 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
         if (!invencible)
         {
+
             StartCoroutine(FrenarNasus());
             if (other.CompareTag("Enemy"))
             {
-                this.GetComponent<BarraDeVida>().RestarVida(10);
+                Debug.Log("Me choco contra el enemigo");
+                this.GetComponent<BarraDeVida>().RestarVida(15);
             }
+
+
         }
-        if(other.CompareTag("enemySword")){
-            this.GetComponent<BarraDeVida>().RestarVida(5);
-        }
+        // if (other.CompareTag("enemySword"))
+        // {
+        //     Debug.Log("Me pega la espada");
+        //     this.GetComponent<BarraDeVida>().RestarVida(200);
+        // }
     }
     private void DesactivarAtaque()
     {
@@ -280,7 +313,7 @@ public class HeroKnight_Modi : MonoBehaviour {
         }
     }
 
-    public void  MuerteP(bool a)
+    public void MuerteP(bool a)
     {
         vivoPlayer = a;
     }
@@ -290,5 +323,19 @@ public class HeroKnight_Modi : MonoBehaviour {
         invencible = true;
         yield return new WaitForSeconds(1f);
         invencible = false;
+    }
+
+    public void GetHudV()
+    {
+        if (hud1.activeSelf || hud2.activeSelf || hud3.activeSelf)
+        {
+            hudAc = true;
+        }
+        else
+        {
+            hudAc = false;
+        }
+
+
     }
 }

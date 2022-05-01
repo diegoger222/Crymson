@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Daño : MonoBehaviour
+public class Dano : MonoBehaviour
 {
     public int damage = 30;
     public float stunSec = 1.5f;
@@ -22,9 +22,14 @@ public class Daño : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             
-            other.GetComponent<Vida>().RecibirDaño(damage + bonusDamage);
+            other.GetComponent<Vida>().RecibirDano(damage + bonusDamage);
         }
-     
+        if (other.CompareTag("Segador"))
+        {
+            other.GetComponent<VidaJefe>().RecibirDano(damage + bonusDamage);
+        }
+
+
 
     }
 

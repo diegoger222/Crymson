@@ -54,8 +54,13 @@ public class HabilidadMovimiento : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
 
-            other.GetComponent<Vida>().RecibirDaño(50);
+            other.GetComponent<Vida>().RecibirDano(50);
 
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Segador"))
+        {
+            other.GetComponent<VidaJefe>().RecibirDano(50);
             Destroy(gameObject);
         }
 

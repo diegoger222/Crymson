@@ -39,7 +39,7 @@ public class Vida : MonoBehaviour
         }
     }
 
-    public void RecibirDaño(int cantidad)
+    public void RecibirDano(int cantidad)
     {
         vida_Act -= cantidad;
         if(vida_Act <= 0)
