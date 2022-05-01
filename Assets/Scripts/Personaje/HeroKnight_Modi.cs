@@ -27,6 +27,8 @@ public class HeroKnight_Modi : MonoBehaviour {
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
+    private bool                hayMando = false;
+    public GameObject menu;
     private BoxCollider2D hitboxespada;
     public GameObject espada;
     private bool invencible = false;
@@ -39,6 +41,18 @@ public class HeroKnight_Modi : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        Debug.Log("Comprueba si hay mandos");
+        string[] listaMandos = Input.GetJoystickNames();
+        string mandos = "";
+        for (int i = listaMandos.Length - 1; i >= 0; i--) {
+            mandos += listaMandos[i];
+            if (mandos.Length >= 10) {
+                hayMando = true;
+                Debug.Log("Hay mando");
+                break;
+            }
+        }
+
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
@@ -57,7 +71,7 @@ public class HeroKnight_Modi : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (vivoPlayer)
+        if (vivoPlayer && !menu.activeSelf)
         {
             GetHudV();
             // Increase timer that controls attack combo
@@ -222,6 +236,8 @@ public class HeroKnight_Modi : MonoBehaviour {
             }
         }
     }
+    
+    
 
     void FixedUpdate()
     {

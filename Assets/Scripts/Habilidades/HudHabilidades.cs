@@ -14,6 +14,8 @@ public class HudHabilidades : MonoBehaviour
     public List<GameObject> Habilidades = new List<GameObject>();
     private bool Mana;
     public int costeMana = 30;
+    private bool hayMando = false;
+    [SerializeField] private GameObject botonHabilidad1; //hay que enlazar el código con el botón
     public class HabilU
     {
         public GameObject SlotIU { get; set; }
@@ -26,6 +28,18 @@ public class HudHabilidades : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Comprueba si hay mandos");
+        string[] listaMandos = Input.GetJoystickNames();
+        string mandos = "";
+        for (int i = listaMandos.Length - 1; i >= 0; i--) {
+            mandos += listaMandos[i];
+            if (mandos.Length >= 10) {
+                hayMando = true;
+                Debug.Log("Hay mando");
+                break;
+            }
+        }
+
         habilidadesHUD = GameObject.FindGameObjectWithTag("HudHabilidades"); //Obtenes el game object donde estan los marcos de habilidades
         Iniciar();
         for(int i = 0; i < ListaHabi.Count; i++)
@@ -42,6 +56,11 @@ public class HudHabilidades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float GatilloIzquierdo = Input.GetAxis("GatilloI");
+        /* if (GatilloIzquierdo > 0.5f) Debug.Log("Gatillo izquierdo apretado"); */ //¡¡Funciona!!
+        if (GatilloIzquierdo > 0.5f) { //para seleccionar habilidad con la cruceta mientras se aprieta el gatillo
+        
+        }
 
         if (this.GetComponent<Mana>().ReturnMana() > costeMana)
         {
@@ -123,6 +142,11 @@ public class HudHabilidades : MonoBehaviour
     }
     public void Iniciar()
     {
+        if (hayMando) { //esto destaca el primer botón. Sólo hay que enlazar el código con el de la interfaz
+            var eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(botonHabilidad1, new BaseEventData(eventSystem));
+        } else Debug.Log("No hay mando");
+
         for(int a = 0; a < 6; a++)
         {
             //InterfazHabilidad prueba = new InterfazHabilidad(im)

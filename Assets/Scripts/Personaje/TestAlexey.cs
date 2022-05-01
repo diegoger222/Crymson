@@ -11,7 +11,7 @@ public class TestAlexey : MonoBehaviour
 
     private void Update()
     {
-        if (canPickUp && Input.GetKeyDown("f"))
+        if (canPickUp && Input.GetButtonDown("CogerItem"))
         {
             Inventory.instance.AddItem(pickUpItem);
             pickUpCollider.gameObject.SetActive(false);

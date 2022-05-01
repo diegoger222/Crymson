@@ -111,9 +111,10 @@ public class Inventory : MonoBehaviour
             return true;
     }
 
+    //Abre el inventario (mando)
     public void ToogleInventory()
     {
-        if (Input.GetKeyDown("i"))
+        if (Input.GetButtonDown("Inventario"))
             if (inventory.active)
                 inventory.SetActive(false);
             else
