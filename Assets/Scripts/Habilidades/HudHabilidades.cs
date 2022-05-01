@@ -64,14 +64,11 @@ public class HudHabilidades : MonoBehaviour
             if (GatilloIzquierdo > 0.5f) { //para lanzar la habilidad con los botones A, X, Y y B
                 if (Input.GetKeyDown("joystick button 0")) {
                     UsoHabilidad(0);
-                }
-                if (Input.GetKeyDown("joystick button 1")) {
+                } else if (Input.GetKeyDown("joystick button 1")) {
                     UsoHabilidad(1);
-                }
-                if (Input.GetKeyDown("joystick button 2")) {
+                } else if (Input.GetKeyDown("joystick button 2")) {
                     UsoHabilidad(2);
-                }
-                if (Input.GetKeyDown("joystick button 3")) {
+                } else if (Input.GetKeyDown("joystick button 3")) {
                     UsoHabilidad(3);
                 }
             }

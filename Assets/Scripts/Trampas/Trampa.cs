@@ -9,7 +9,7 @@ public class Trampa : MonoBehaviour
 
     [SerializeField] private float radioGolpe;
 
-    [SerializeField] private float dañoGolpe;
+    [SerializeField] private float danoGolpe;
 
     [SerializeField] private float tiempoEntreAtaques;
 
