@@ -314,6 +314,14 @@ public class HeroKnight_Modi : MonoBehaviour
             this.GetComponent<Experiencia>().ExperienciaPermanente();
             other.gameObject.SetActive(false);
         }
+        if (other.CompareTag("Projectile"))
+        {
+            if (!invencible)
+            {
+                gameObject.GetComponent<BarraDeVida>().RestarVida(15);
+            }
+            Destroy(other.gameObject);
+        }
         if (!invencible)
         {
 

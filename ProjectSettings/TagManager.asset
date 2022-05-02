@@ -17,6 +17,9 @@ TagManager:
   - Tutorial
   - Segador
   - HudV
+  - Projectile
+  - EnemyRanged
+  - Grid
   - jumpingSkeleton
   - Elfo
   - Trap

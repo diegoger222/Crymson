@@ -24,6 +24,8 @@ public class Vida : MonoBehaviour
         vivo = true;
         vida_Max = 100;
         vida_Act = 80;
+
+        Debug.Log(gameObject.name);
     }
 
     // Update is called once per frame
@@ -33,7 +35,15 @@ public class Vida : MonoBehaviour
 
         if(vida_Act <= 0)
         {
-            this.GetComponent<Enemy_Behaviour>().Muerto();
+            if (gameObject.name.StartsWith("Lanza Hielos"))
+            {
+                this.GetComponent<Enemy_Behaviour_Ranged>().Muerto();
+            }
+            else
+            {
+                this.GetComponent<Enemy_Behaviour>().Muerto();
+            }
+            
             m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
             m_collider.enabled = false;
         }
