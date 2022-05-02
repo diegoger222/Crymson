@@ -181,7 +181,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 // Call one of three attack animations "Attack1", "Attack2", "Attack3"
                 m_animator.SetTrigger("Attack" + m_currentAttack);
 
-                attackSound.Play();
+                //attackSound.Play();
 
                 // Reset timer
                 m_timeSinceAttack = 0.0f;
@@ -191,7 +191,7 @@ public class HeroKnight_Modi : MonoBehaviour
             else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Bloquear") && !m_rolling)
             {
                 m_animator.SetTrigger("Block");
-                blockSound.Play();
+                //blockSound.Play();
                 m_animator.SetBool("IdleBlock", true);
                 this.GetComponent<BarraDeVida>().ActivarInmune();
             }
@@ -209,7 +209,7 @@ public class HeroKnight_Modi : MonoBehaviour
             {
                 this.GetComponent<Stamina>().UsarStamina(30f);
                 m_rolling = true;
-                rollSound.Play();
+                //rollSound.Play();
                 m_animator.SetTrigger("Roll");
                 m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
 
@@ -222,7 +222,7 @@ public class HeroKnight_Modi : MonoBehaviour
             {
                 this.GetComponent<Stamina>().UsarStamina(10f);
                 m_animator.SetTrigger("Jump");
-                jumpSound.Play();
+                //jumpSound.Play();
                 m_grounded = false;
                 m_animator.SetBool("Grounded", m_grounded);
                 m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);

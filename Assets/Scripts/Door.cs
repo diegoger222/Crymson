@@ -22,21 +22,14 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (canInteract && (isOneWayLeft || isOneWayRight))
-        {
-            if (direction.x > 0f)
-            {
-                print("The object collided with the right side of the ball!");
-            }
-            else if (direction.x < 0f)
-            {
-                print("The object collided with the left side of the ball!");
-            }
-        }
-
-        if(canInteract && Input.GetButtonDown("CogerItem"))
+        if (canInteract && Input.GetButtonDown("CogerItem"))
         {
             if (isLocked && Inventory.instance.RemoveItem(key, 1))
+            {
+                if(Inventory.instance.RemoveItem(key, 1));
+                    gameObject.SetActive(false);
+            }
+            else if(isOneWayRight && direction.x > 0)
             {
                 gameObject.SetActive(false);
             }else
