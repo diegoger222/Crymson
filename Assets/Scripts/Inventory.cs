@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public const int numSlots = 5;
     public Slot slotPrefab;
     public GameObject slotsParent;
-    Item[] items = new Item[numSlots];
+    public Item[] items = new Item[numSlots];
     Slot[] slots = new Slot[numSlots];
     private void Awake()
     {
@@ -87,14 +87,13 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < numSlots; i++)
         {
             if (items[i] != null &&
-                    items[i].id == itemToRemove.id &&
-                    itemToRemove.stackable)
+                    items[i].id == itemToRemove.id)
             {
                 if ((items[i].quantity - 1) > 0)
                 {
                     int aux = items[i].quantity - 1;
                     Debug.Log(aux);
-                    items[i].quantity =  aux;
+                    items[i].quantity = aux;
                     Debug.Log(items[i].quantity);
                     slots[i].SetCount(aux);
                 }

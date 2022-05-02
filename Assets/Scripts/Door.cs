@@ -26,8 +26,7 @@ public class Door : MonoBehaviour
         {
             if (isLocked && Inventory.instance.RemoveItem(key, 1))
             {
-                if(Inventory.instance.RemoveItem(key, 1));
-                    gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
             else if(isOneWayRight && direction.x > 0)
             {

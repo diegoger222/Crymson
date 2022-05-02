@@ -48,6 +48,27 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
+    public void StartDialogue(Dialogue dialogue, int first, int last)
+    {
+        if (hayMando)
+        { //esto destaca el primer botón. Sólo hay que enlazar el código con el de la interfaz
+            var eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(botonContinuar, new BaseEventData(eventSystem));
+        }
+        else Debug.Log("No hay mando");
+
+        dialogueBox.SetActive(true);
+        sentences.Clear();
+
+        for(int i = first; i <= last; i++)
+        {
+            sentences.Enqueue(dialogue.sentences[i]);
+        }
+
+        DisplayNextSentence();
+    }
+
+
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
