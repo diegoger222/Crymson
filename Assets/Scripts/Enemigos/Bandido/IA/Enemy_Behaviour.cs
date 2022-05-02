@@ -44,8 +44,6 @@ public class Enemy_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (vivo)
         {
             target = GameObject.FindGameObjectWithTag("Player");
