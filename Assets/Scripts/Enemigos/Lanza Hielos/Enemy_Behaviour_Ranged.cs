@@ -55,6 +55,7 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
     {
         position = gameObject.transform.position;
         rotation = Quaternion.identity;
+        position.z = -2;
         /*LA ROTACIÓN DE LA FLECHA NO FUNCIONA
         if (target.transform.position.x > gameObject.transform.position.y)
         {
