@@ -23,6 +23,7 @@ TagManager:
   - jumpingSkeleton
   - Elfo
   - Trap
+  - DoorLocked
   layers:
   - Default
   - TransparentFX

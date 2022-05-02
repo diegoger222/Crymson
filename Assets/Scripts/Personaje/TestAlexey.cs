@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestAlexey : MonoBehaviour
 {
     private bool canPickUp = false;
+    private bool canInteractDoor = false;
     private Collider2D pickUpCollider;
     private Item pickUpItem;
     public GameObject dialog;
@@ -14,6 +15,11 @@ public class TestAlexey : MonoBehaviour
         if (canPickUp && Input.GetButtonDown("CogerItem"))
         {
             Inventory.instance.AddItem(pickUpItem);
+            pickUpCollider.gameObject.SetActive(false);
+        }
+
+        if(canInteractDoor)
+        {
             pickUpCollider.gameObject.SetActive(false);
         }
     }
@@ -37,6 +43,7 @@ public class TestAlexey : MonoBehaviour
             other.gameObject.SetActive(false);
             trigger.TriggerDialogue();
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)

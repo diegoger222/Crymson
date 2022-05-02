@@ -108,8 +108,10 @@ public class Inventory : MonoBehaviour
                 return true;
             }
         }
-            return true;
+        return false;
     }
+
+    
 
     //Abre el inventario (mando)
     public void ToogleInventory()
