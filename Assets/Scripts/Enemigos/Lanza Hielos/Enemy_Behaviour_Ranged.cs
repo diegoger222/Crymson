@@ -22,6 +22,9 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
     [SerializeField] private float tiempoSiguienteAtaque = 0;
     [SerializeField] private float tiempoEntreAtaques = 1;
 
+    public AudioSource bowSound;
+
+    public AudioSource deathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,15 +58,17 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
     {
         position = gameObject.transform.position;
         rotation = Quaternion.identity;
-        /*LA ROTACIÓN DE LA FLECHA NO FUNCIONA
+        position.z = -2;
+        /*LA ROTACIï¿½N DE LA FLECHA NO FUNCIONA
         if (target.transform.position.x > gameObject.transform.position.y)
         {
             rotation = Quaternion.LookRotation(Vector3.right);
         }*/
         anim.SetTrigger("Attack");
+        bowSound.Play();
 
-        Invoke("DelayArrow", 0.8f);
-        Invoke("StopAttack", 0.8f);
+        Invoke("DelayArrow", 0.81f);
+        Invoke("StopAttack", 0f);
     }
 
     private void StopAttack()
@@ -79,7 +84,8 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
     public void Muerto()
     {
         vivo = false;
-        anim.SetTrigger("Dead");
+        anim.SetTrigger("Death");
+        deathSound.Play();
     }
 
     void FlipTowardsPlayer()

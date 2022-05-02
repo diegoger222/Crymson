@@ -25,7 +25,9 @@ public class Combate : MonoBehaviour
     private float attackDistance = 3;
     public float moveSpeed;
 
+    public AudioSource attackSound;
 
+    
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -94,6 +96,7 @@ public class Combate : MonoBehaviour
     private void Golpe()
     {
         animator.SetTrigger("Atk1");
+        attackSound.Play();
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
 
         foreach (Collider2D colisionador in objetos)
