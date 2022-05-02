@@ -20,15 +20,16 @@ public class HeroKnight_Modi : MonoBehaviour
     private Sensor_HeroKnight_Modi   m_wallSensorL2;
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
-    private bool                m_rolling = false;
-    private bool                m_attacking = false;
+    private bool                m_rolling = false; //comprueba si está rodando
+    private bool                m_attacking = false; //comprueba si está atacando
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
-    private float               m_rollDuration = 8.0f / 14.0f;
-
-    private float               m_rollCurrentTime = 0f;
+    private float               m_rollDuration = 8.0f / 14.0f; //duración máxima de rodar: 0.571 segundos
+    private float               duracionAtaque = 0.2f; //tiempo máximo que tarda el ataque: 0.2 segundos
+    private float               ataqueActual = 0.0f; //tiempo que lleva atacando
+    private float               m_rollCurrentTime = 0.0f; //tiempo que lleva rodando
     private bool                hayMando = false;
     public GameObject menu;
     private BoxCollider2D hitboxespada;
@@ -80,13 +81,27 @@ public class HeroKnight_Modi : MonoBehaviour
             // Increase timer that controls attack combo
             m_timeSinceAttack += Time.deltaTime;
 
-            // Increase timer that checks roll duration
-            if (m_rolling)
+            // Si está rodando, añade el tiempo que lleva rodando
+            if (m_rolling) {
                 m_rollCurrentTime += Time.deltaTime;
+            }
 
-            // Disable rolling if timer extends duration
-            if (m_rollCurrentTime > m_rollDuration)
+            // Cuando termina de rodar se desactiva
+            if (m_rollCurrentTime > m_rollDuration) {
                 m_rolling = false;
+                m_rollCurrentTime = 0.0f; //si no se pone nunca se reinicia el esquive
+            }
+
+            //Si está atacando, añade el tiempo que lleva atacando
+            if (m_attacking) {
+                ataqueActual += Time.deltaTime;
+            }
+
+            //Cuando termina el ataque se desactiva
+            if (ataqueActual > duracionAtaque) {
+                m_attacking = false;
+                duracionAtaque = 0.0f;
+            }
 
             //Check if character just landed on the ground
             if (!m_grounded && m_groundSensor.State())
@@ -106,15 +121,11 @@ public class HeroKnight_Modi : MonoBehaviour
             float inputX = Input.GetAxis("Horizontal");
 
             // Swap direction of sprite depending on walk direction
-            if (!m_rolling && inputX > 0)
-            {
+            if (!m_rolling && inputX > 0 && !m_attacking) {
                 GetComponent<SpriteRenderer>().flipX = false;
                 espada.transform.rotation = Quaternion.Euler(0, 0, 0);
                 m_facingDirection = 1;
-            }
-
-            else if (!m_rolling && inputX < 0)
-            {
+            } else if (!m_rolling && inputX < 0 && !m_attacking) {
                 GetComponent<SpriteRenderer>().flipX = true;
                 espada.transform.rotation = Quaternion.Euler(0, -180, 0);
                 m_facingDirection = -1;
@@ -129,7 +140,7 @@ public class HeroKnight_Modi : MonoBehaviour
 
             // -- Handle Animations --
             //Wall Slide
-            m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+            //m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
             m_animator.SetBool("WallSlide", m_isWallSliding);
 
             //Death
@@ -144,7 +155,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_animator.SetTrigger("Hurt");
 
             //Attack (mando)
-            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc && !m_attacking)
             {
                 m_attacking = true;
                 m_currentAttack++;
@@ -174,6 +185,9 @@ public class HeroKnight_Modi : MonoBehaviour
                 this.GetComponent<BarraDeVida>().ActivarInmune();
             }
 
+            
+
+
             else if (Input.GetButtonUp("Bloquear"))
             {
                 m_animator.SetBool("IdleBlock", false);
@@ -186,6 +200,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_rolling = true;
                 m_animator.SetTrigger("Roll");
                 m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
+
             }
 
 
@@ -224,23 +239,38 @@ public class HeroKnight_Modi : MonoBehaviour
                     m_body2d.velocity = Vector3.zero;
                 }
             }
-            //If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
+
+
+            /* If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
             if (m_rolling)
             {
-                Debug.Log(m_collider.enabled);
-                m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
-                m_collider.enabled = false;
+                //Debug.Log(m_collider.enabled);
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
             }
             else
             {
                 m_body2d.constraints = RigidbodyConstraints2D.None;
                 m_body2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 m_collider.enabled = true;
-            }
+            }*/
+
+            if (m_rolling)
+                this.GetComponent<BarraDeVida>().ActivarInmune();
+            else
+                this.GetComponent<BarraDeVida>().DesactivarInmune();
         }
     }
-    
-    
+
+    /*void onCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy")) {
+            if (m_rolling)
+            {
+                Debug.Log('A');
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<>(), GetComponent<BoxCollider2D>());
+            }
+        }
+    }*/
 
     void FixedUpdate()
     {
@@ -304,6 +334,7 @@ public class HeroKnight_Modi : MonoBehaviour
         //     this.GetComponent<BarraDeVida>().RestarVida(200);
         // }
     }
+
     private void DesactivarAtaque()
     {
         hitboxespada.enabled = false;

@@ -20,28 +20,31 @@ TagManager:
   - Projectile
   - EnemyRanged
   - Grid
+  - jumpingSkeleton
+  - Elfo
+  - Trap
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
   - 
   - 
+  - Special
+  - Cave
+  - Exterior
+  - 
+  - 
+  - 
+  - Character
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - VCam
   - 
   - 
   - 
@@ -56,4 +59,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Decor
+    uniqueID: 4043037947
+    locked: 0
+  - name: Base
+    uniqueID: 3006253449
+    locked: 0
+  - name: Cave
+    uniqueID: 2951521965
+    locked: 0
+  - name: Character
+    uniqueID: 1844751285
     locked: 0

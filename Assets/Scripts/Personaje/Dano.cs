@@ -24,6 +24,11 @@ public class Dano : MonoBehaviour
             
             other.GetComponent<Vida>().RecibirDano(damage + bonusDamage);
         }
+        if (other.CompareTag("jumpingSkeleton"))
+        {
+            Debug.Log("Pego al eskeleto");
+            other.GetComponent<VidaSkeleton>().RecibirDano(damage + bonusDamage);
+        }
         if (other.CompareTag("Segador"))
         {
             other.GetComponent<VidaJefe>().RecibirDano(damage + bonusDamage);

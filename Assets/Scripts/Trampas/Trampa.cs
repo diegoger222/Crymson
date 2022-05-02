@@ -76,6 +76,7 @@ public class Trampa : MonoBehaviour
         {
             if (colisionador.CompareTag("Player"))
             {
+                
                 colisionador.transform.GetComponent<BarraDeVida>().RestarVida(10);
             }
         }
