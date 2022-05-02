@@ -1610,7 +1610,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -8179,7 +8179,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0062894, y: 1.0062894}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -11129,7 +11129,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1844751285
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &382742346
@@ -11217,7 +11217,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2173e9b151dddfa46b8625099a726f7e, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11239,7 +11239,7 @@ TilemapRenderer:
   m_SortingLayer: 2
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -33778,7 +33778,7 @@ TilemapRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -42722,7 +42722,7 @@ Transform:
   m_GameObject: {fileID: 946092327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.3, z: 0}
-  m_LocalScale: {x: 3, y: 4.4624996, z: 1}
+  m_LocalScale: {x: 3, y: 3.9046872, z: 1}
   m_Children:
   - {fileID: 278874868}
   - {fileID: 2089854404}
@@ -42741,7 +42741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104b99d6c7650ed4aae636425c76b8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFraction: {x: 0.4, y: 0.9}
+  parallaxFraction: {x: 0.4, y: 0.8}
 --- !u!212 &946092330
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45363,7 +45363,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -49672,7 +49672,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0062894, y: 1.0062894}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -51007,7 +51007,7 @@ TilemapRenderer:
   m_SortingLayer: 3
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -84843,6 +84843,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1510005972648357610, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510005972648357610, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1844751285
+      objectReference: {fileID: 0}
     - target: {fileID: 1554358506951022364, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: player
       value: 
@@ -84857,39 +84865,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1586061550001723660, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1586237756460734658, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484101195914681, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587484101414252706, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1844751285
       objectReference: {fileID: 0}
     - target: {fileID: 1587484101414252718, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484102036626161, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484102354054724, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484102389902233, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484102525333792, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1587484102751785658, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1591932298518324814, guid: f3f70c8a3b7e37f418476e7a9396def3, type: 3}
       propertyPath: m_RootOrder
@@ -87580,7 +87592,7 @@ TilemapRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -94281,7 +94293,7 @@ TilemapRenderer:
   m_SortingLayer: 3
   m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -101310,8 +101322,28 @@ PrefabInstance:
       value: HeavyBandit
       objectReference: {fileID: 0}
     - target: {fileID: 256953944543464535, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 256953944543464535, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 257059247555317145, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342018841644970, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342019057892127, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342019156655810, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 258342019292603513, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
       propertyPath: m_Size.x
@@ -101333,6 +101365,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 258342019292603515, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342019468724193, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 258342019944712187, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
       propertyPath: espada
       value: 
@@ -101348,6 +101388,18 @@ PrefabInstance:
     - target: {fileID: 258342019944712187, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
       propertyPath: attackDistance
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342020084975842, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342020266092021, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 258342020266092025, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1844751285
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b05095eef8d65842ad85ac5d97e82da, type: 3}
