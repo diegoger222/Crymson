@@ -79,7 +79,7 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
     public void Muerto()
     {
         vivo = false;
-        anim.SetTrigger("Dead");
+        anim.SetTrigger("Death");
     }
 
     void FlipTowardsPlayer()
