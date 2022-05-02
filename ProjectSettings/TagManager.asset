@@ -18,6 +18,7 @@ TagManager:
   - Segador
   - HudV
   - jumpingSkeleton
+  - Elfo
   layers:
   - Default
   - TransparentFX
