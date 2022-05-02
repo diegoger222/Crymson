@@ -27,7 +27,8 @@ public class HeroKnight_Modi : MonoBehaviour
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f; //duración máxima de rodar: 0.571 segundos
-
+    private float               duracionAtaque = 0.2f; //tiempo máximo que tarda el ataque: 0.2 segundos
+    private float               ataqueActual = 0.0f; //tiempo que lleva atacando
     private float               m_rollCurrentTime = 0.0f; //tiempo que lleva rodando
     private bool                hayMando = false;
     public GameObject menu;
@@ -91,6 +92,17 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_rollCurrentTime = 0.0f; //si no se pone nunca se reinicia el esquive
             }
 
+            //Si está atacando, añade el tiempo que lleva atacando
+            if (m_attacking) {
+                ataqueActual += Time.deltaTime;
+            }
+
+            //Cuando termina el ataque se desactiva
+            if (ataqueActual > duracionAtaque) {
+                m_attacking = false;
+                duracionAtaque = 0.0f;
+            }
+
             //Check if character just landed on the ground
             if (!m_grounded && m_groundSensor.State())
             {
@@ -113,7 +125,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
                 espada.transform.rotation = Quaternion.Euler(0, 0, 0);
                 m_facingDirection = 1;
-            } else if (!m_rolling && inputX < 0) {
+            } else if (!m_rolling && inputX < 0 && !m_attacking) {
                 GetComponent<SpriteRenderer>().flipX = true;
                 espada.transform.rotation = Quaternion.Euler(0, -180, 0);
                 m_facingDirection = -1;
@@ -143,7 +155,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_animator.SetTrigger("Hurt");
 
             //Attack (mando)
-            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc)
+            else if (!(GatilloIzquierdo > 0.5f) && Input.GetButtonDown("Atacar") && m_timeSinceAttack > 0.20f && !m_rolling && (20 < this.GetComponent<Stamina>().ReturnStamina()) && !hudAc && !m_attacking)
             {
                 m_attacking = true;
                 m_currentAttack++;
@@ -172,6 +184,9 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_animator.SetBool("IdleBlock", true);
                 this.GetComponent<BarraDeVida>().ActivarInmune();
             }
+
+            
+
 
             else if (Input.GetButtonUp("Bloquear"))
             {
