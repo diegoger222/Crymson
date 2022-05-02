@@ -116,7 +116,7 @@ public class Enemy_Behaviour : MonoBehaviour
         hitboxespada.enabled = true;
         // yield return new WaitForSeconds(0.1f);
         Debug.Log("Daño al enemigo");
-        heroKnight.GetComponent<BarraDeVida>().RestarVida(15);
+        heroKnight.GetComponent<BarraDeVida>().RestarVida(10);
         Invoke("StopAttack", 0.8f); ///alknflñsadhnf jñkashfd ñahsdñlfahdñlfhasdlñkfhjjañokjfjh añlkjhj
         intTimer = timer;
         attackMode = true;

@@ -17,11 +17,12 @@ TagManager:
   - Tutorial
   - Segador
   - HudV
+  - jumpingSkeleton
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

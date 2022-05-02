@@ -16,17 +16,17 @@ public class Danoespada : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
 
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Pego al jugador");
-            other.GetComponent<BarraDeVida>().RestarVida(0);
-        }
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         Debug.Log("Pego al jugador");
+    //         other.GetComponent<BarraDeVida>().RestarVida(0);
+    //     }
 
 
-    }
+    // }
 
     // public void OnTriggerEnter2D(Collider2D other)
     // {
