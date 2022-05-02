@@ -62,8 +62,8 @@ public class Enemy_Behaviour_Ranged : MonoBehaviour
         }*/
         anim.SetTrigger("Attack");
 
-        Invoke("DelayArrow", 0.8f);
-        Invoke("StopAttack", 0.8f);
+        Invoke("DelayArrow", 0.81f);
+        Invoke("StopAttack", 0f);
     }
 
     private void StopAttack()

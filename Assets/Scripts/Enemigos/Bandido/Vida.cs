@@ -60,6 +60,10 @@ public class Vida : MonoBehaviour
         else
         {
             m_animator.SetTrigger("Hurt");
+            if (gameObject.name.StartsWith("Lanza Hielos"))
+            {
+                m_animator.SetTrigger("Idle");
+            }
         }
     }
 
