@@ -54,3 +54,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Decor
+    uniqueID: 4043037947
+    locked: 0
+  - name: Base
+    uniqueID: 3006253449
+    locked: 0
+  - name: Character
+    uniqueID: 1844751285
+    locked: 0
