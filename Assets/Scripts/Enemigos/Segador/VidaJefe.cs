@@ -12,6 +12,7 @@ public class VidaJefe : MonoBehaviour
     public GameObject generalVida;
     private float vidaActual;
 
+    public AudioSource deathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,12 @@ public class VidaJefe : MonoBehaviour
     public void RecibirDano(int cantidad)
     {
         vidaActual -= cantidad;
-        if(vidaActual <= 0)
+        if (vidaActual <= 0)
         {
             Invoke("DesactivarHudVida", 3);
             this.GetComponent<Combate>().Muerto();
-            vidaText.text = "0"+ "/" + vida_Max.ToString();
+            vidaText.text = "0" + "/" + vida_Max.ToString();
+            deathSound.Play();
         }
         else
         {
@@ -50,6 +52,6 @@ public class VidaJefe : MonoBehaviour
         generalVida.SetActive(false);
     }
 
-  
+
 
 }

@@ -27,6 +27,10 @@ public class Enemy_Behaviour : MonoBehaviour
     private bool cooling;
     private float intTimer;
     private bool vivo = true;
+
+    public AudioSource attackSound;
+
+    
     #endregion
 
     void Awake()
@@ -111,6 +115,7 @@ public class Enemy_Behaviour : MonoBehaviour
     void Attack()
     {
         anim.SetBool("Attack2", true);
+        attackSound.Play();
         hitboxespada.enabled = true;
         // yield return new WaitForSeconds(0.1f);
         Debug.Log("Daño al enemigo");

@@ -13,6 +13,8 @@ public class Vida : MonoBehaviour
     private float vida_Max;
     private float vida_Act;
     private bool vivo;
+
+    public AudioSource deathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,7 @@ public class Vida : MonoBehaviour
         if(vida_Act <= 0)
         {
             m_animator.SetTrigger("Death");
+            deathSound.Play();
             Invoke("Muerte", 2f);
         }
         else

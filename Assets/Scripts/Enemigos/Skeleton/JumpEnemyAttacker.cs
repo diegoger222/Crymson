@@ -31,6 +31,10 @@ public class JumpEnemyAttacker : MonoBehaviour
     private bool inRange = false;
 
     private float distance;
+
+    public AudioSource jumpSound;
+
+    
     void Awake()
     {
         intTimer = -1;
@@ -91,6 +95,7 @@ public class JumpEnemyAttacker : MonoBehaviour
         {
             float playerPosition = player.position.x - transform.position.x;
             anim.SetTrigger("jump");
+            jumpSound.Play();
             Invoke("StopJumpAttack", 1f); ///alknflñsadhnf jñkashfd ñahsdñlfahdñlfhasdlñkfhjjañokjfjh añlkjhj
             intTimer = timer;
             if (playerPosition > 0)
