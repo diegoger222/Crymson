@@ -21,7 +21,7 @@ public class HeroKnight_Modi : MonoBehaviour
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false; //comprueba si está rodando
-    private bool                m_attacking = false;
+    private bool                m_attacking = false; //comprueba si está atacando
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
@@ -109,15 +109,11 @@ public class HeroKnight_Modi : MonoBehaviour
             float inputX = Input.GetAxis("Horizontal");
 
             // Swap direction of sprite depending on walk direction
-            if (!m_rolling && inputX > 0)
-            {
+            if (!m_rolling && inputX > 0 && !m_attacking) {
                 GetComponent<SpriteRenderer>().flipX = false;
                 espada.transform.rotation = Quaternion.Euler(0, 0, 0);
                 m_facingDirection = 1;
-            }
-
-            else if (!m_rolling && inputX < 0)
-            {
+            } else if (!m_rolling && inputX < 0) {
                 GetComponent<SpriteRenderer>().flipX = true;
                 espada.transform.rotation = Quaternion.Euler(0, -180, 0);
                 m_facingDirection = -1;
