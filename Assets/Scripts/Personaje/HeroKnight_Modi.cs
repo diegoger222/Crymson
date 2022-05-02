@@ -27,7 +27,7 @@ public class HeroKnight_Modi : MonoBehaviour
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f; //duración máxima de rodar: 0.571 segundos
-    private float               duracionAtaque = 0.2f; //tiempo máximo que tarda el ataque: 0.2 segundos
+    private float               duracionAtaque = 0.5f; //tiempo máximo que tarda el ataque: 0.5 segundos
     private float               ataqueActual = 0.0f; //tiempo que lleva atacando
     private float               m_rollCurrentTime = 0.0f; //tiempo que lleva rodando
     private bool                hayMando = false;
@@ -160,7 +160,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_attacking = true;
                 m_currentAttack++;
                 hitboxespada.enabled = true;
-                Invoke("DesactivarAtaque", 0.7f);
+                Invoke("DesactivarAtaque", 0.1f);
                 this.GetComponent<Stamina>().UsarStamina(20f);
                 // Loop back to one after third attack
                 if (m_currentAttack > 3)
@@ -254,10 +254,15 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_collider.enabled = true;
             }*/
 
-            if (m_rolling)
+            if (m_rolling || m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Block"))
+            {
                 this.GetComponent<BarraDeVida>().ActivarInmune();
+            }
             else
-                this.GetComponent<BarraDeVida>().DesactivarInmune();
+            {
+                this.GetComponent<BarraDeVida>().DesactivarInmune();    
+            }
+
         }
     }
 
