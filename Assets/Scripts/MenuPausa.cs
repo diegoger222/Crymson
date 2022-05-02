@@ -51,6 +51,7 @@ public class MenuPausa : MonoBehaviour
     }
 
     public void salirMP() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MenuPrincipal");
     }
 
