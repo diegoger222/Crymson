@@ -20,15 +20,15 @@ public class HeroKnight_Modi : MonoBehaviour
     private Sensor_HeroKnight_Modi   m_wallSensorL2;
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
-    private bool                m_rolling = false;
+    private bool                m_rolling = false; //comprueba si está rodando
     private bool                m_attacking = false;
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
-    private float               m_rollDuration = 8.0f / 14.0f;
+    private float               m_rollDuration = 8.0f / 14.0f; //duración máxima de rodar: 0.571 segundos
 
-    private float               m_rollCurrentTime = 0f;
+    private float               m_rollCurrentTime = 0.0f; //tiempo que lleva rodando
     private bool                hayMando = false;
     public GameObject menu;
     private BoxCollider2D hitboxespada;
@@ -80,13 +80,16 @@ public class HeroKnight_Modi : MonoBehaviour
             // Increase timer that controls attack combo
             m_timeSinceAttack += Time.deltaTime;
 
-            // Increase timer that checks roll duration
-            if (m_rolling)
+            // Si está rodando, añade el tiempo que lleva rodando
+            if (m_rolling) {
                 m_rollCurrentTime += Time.deltaTime;
+            }
 
-            // Disable rolling if timer extends duration
-            if (m_rollCurrentTime > m_rollDuration)
+            // Cuando termina de rodar se desactiva
+            if (m_rollCurrentTime > m_rollDuration) {
                 m_rolling = false;
+                m_rollCurrentTime = 0.0f; //si no se pone nunca se reinicia el esquive
+            }
 
             //Check if character just landed on the ground
             if (!m_grounded && m_groundSensor.State())
