@@ -140,7 +140,7 @@ public class HeroKnight_Modi : MonoBehaviour
 
             // -- Handle Animations --
             //Wall Slide
-            m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+            //m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
             m_animator.SetBool("WallSlide", m_isWallSliding);
 
             //Death
@@ -200,6 +200,7 @@ public class HeroKnight_Modi : MonoBehaviour
                 m_rolling = true;
                 m_animator.SetTrigger("Roll");
                 m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
+
             }
 
 
@@ -238,23 +239,38 @@ public class HeroKnight_Modi : MonoBehaviour
                     m_body2d.velocity = Vector3.zero;
                 }
             }
-            //If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
+
+
+            /* If it's rolling it has to be able to dash through enemies NO FUNCIONA DEL TODO. LA PRIMERA VEZ SÍ QUE ROLLEA, PERO EL RESTO NO
             if (m_rolling)
             {
-                Debug.Log(m_collider.enabled);
-                m_body2d.constraints = RigidbodyConstraints2D.FreezePositionY;
-                m_collider.enabled = false;
+                //Debug.Log(m_collider.enabled);
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
             }
             else
             {
                 m_body2d.constraints = RigidbodyConstraints2D.None;
                 m_body2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 m_collider.enabled = true;
-            }
+            }*/
+
+            if (m_rolling)
+                this.GetComponent<BarraDeVida>().ActivarInmune();
+            else
+                this.GetComponent<BarraDeVida>().DesactivarInmune();
         }
     }
-    
-    
+
+    /*void onCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy")) {
+            if (m_rolling)
+            {
+                Debug.Log('A');
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<>(), GetComponent<BoxCollider2D>());
+            }
+        }
+    }*/
 
     void FixedUpdate()
     {
@@ -310,6 +326,7 @@ public class HeroKnight_Modi : MonoBehaviour
         //     this.GetComponent<BarraDeVida>().RestarVida(200);
         // }
     }
+
     private void DesactivarAtaque()
     {
         hitboxespada.enabled = false;
