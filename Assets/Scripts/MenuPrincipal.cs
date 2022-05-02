@@ -33,7 +33,7 @@ public class MenuPrincipal : MonoBehaviour
     public void IniciarJuego() {
         //abrir juego
         Debug.Log("Se inicia el juego.");
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("PruebaAlexey");
     }
 
     public void SalirJuego() {

@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 13b3e026dad360c41895ff8f09c68f2d
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 5c1d4b52eb027104382403d1faafff52
+  - enabled: 1
+    path: Assets/Scenes/PruebaAlexey.unity
+    guid: 813ddeadf6cabf44e8c50136e01776d7
   m_configObjects: {}
