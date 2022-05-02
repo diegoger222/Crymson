@@ -256,7 +256,6 @@ public class HeroKnight_Modi : MonoBehaviour
 
             if (m_rolling || m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Block"))
             {
-                Debug.Log(m_animator.GetCurrentAnimatorStateInfo(0).ToString());
                 this.GetComponent<BarraDeVida>().ActivarInmune();
             }
             else
