@@ -59306,6 +59306,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1844751285
       objectReference: {fileID: 0}
+    - target: {fileID: 1014925543181239318, guid: 8f3f659a82534e240bece906f98b6e4b, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 1550169988}
     - target: {fileID: 1014925543181239319, guid: 8f3f659a82534e240bece906f98b6e4b, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -59374,6 +59378,10 @@ PrefabInstance:
       propertyPath: vidaText
       value: 
       objectReference: {fileID: 123918704}
+    - target: {fileID: 2336655561413373281, guid: 8f3f659a82534e240bece906f98b6e4b, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 60928759}
     - target: {fileID: 2336655561413373281, guid: 8f3f659a82534e240bece906f98b6e4b, type: 3}
       propertyPath: vidaImagen
       value: 
