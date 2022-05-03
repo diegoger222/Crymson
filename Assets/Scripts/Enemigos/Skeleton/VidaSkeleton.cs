@@ -24,7 +24,7 @@ public class VidaSkeleton : MonoBehaviour
 
         vivo = true;
         vida_Max = 100;
-        vida_Act = 80; 
+        vida_Act = 100; 
     }
 
     // Update is called once per frame
@@ -42,9 +42,9 @@ public class VidaSkeleton : MonoBehaviour
 
     public void RecibirDano(int cantidad)
     {
-        Debug.Log("hihihihihih");
+        //Debug.Log("hihihihihih");
         vida_Act -= cantidad;
-        Debug.Log("check2");
+        //Debug.Log("check2");
         if(vida_Act <= 0)
         {
             m_animator.SetTrigger("death");

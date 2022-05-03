@@ -29,7 +29,7 @@ public class Experiencia : MonoBehaviour
         exp_nivel = 125; 
         var_nivel = 35;
         exp_guar = 0;
-        exp_acumul = 120;
+        exp_acumul = 0;
         puntos_skills = 0; 
         experienciaNecesaria = 125;
         textoValorBarraExperiencia.text = "" + exp_acumul.ToString() + " / " + experienciaNecesaria.ToString() + " XP";
