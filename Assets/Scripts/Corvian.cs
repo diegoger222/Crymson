@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Corvian : MonoBehaviour
 {
-    private int questState;
+    public int questState;
     private bool canInteract;
     private DialogueTrigger dialogueTrigger;
 
     public GameObject pickupDialogue;
     public Item[] rewards;
+    public Item keyItem;
     private int reward;
 
     void Start()
@@ -26,11 +27,24 @@ public class Corvian : MonoBehaviour
             {
                 case 0:
                     dialogueTrigger.TriggerDialogue(0, 3);
-                    Inventory.instance.AddItem(rewards[reward]);
+                    Inventory.instance.AddItem(rewards[reward++]);
                     questState++;
                     break;
                 case 1:
-                    dialogueTrigger.TriggerDialogue(4, 4);
+                    if(Inventory.instance.RemoveItem(keyItem, 1))
+                    {
+                        dialogueTrigger.TriggerDialogue(5, 5);
+                        Inventory.instance.AddItem(rewards[reward]);
+                        Debug.Log("A");
+                        questState++;
+                        break;
+                    } else
+                    {
+                        dialogueTrigger.TriggerDialogue(4, 4);
+                        break;
+                    }
+                case 2:
+                    dialogueTrigger.TriggerDialogue(6, 6);
                     break;
                 default:
                     break;

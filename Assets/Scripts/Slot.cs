@@ -57,7 +57,7 @@ public class Slot : MonoBehaviour
                 if ((ax - 1) <= 0)
                 {
                     a.GetComponent<Inventory>().RemoveItem(item, 1);
-                   Destroy(gameObject);
+                    Destroy(gameObject);
                 }
                 else
                 {

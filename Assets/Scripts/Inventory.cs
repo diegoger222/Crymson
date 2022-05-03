@@ -100,7 +100,13 @@ public class Inventory : MonoBehaviour
                 else
                 {
 
-                    items[i] = null;
+                    if(items[i].stackable)
+                    {
+
+                    }else
+                    {
+                        items[i] = null;
+                    }
                     //items[i].quantity = items[i].quantity -1;
 
                 }
