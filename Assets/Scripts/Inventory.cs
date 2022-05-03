@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
     public GameObject slotsParent;
     public Item[] items = new Item[numSlots];
     Slot[] slots = new Slot[numSlots];
+    public int maxPot = 3;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -57,10 +59,13 @@ public class Inventory : MonoBehaviour
                 items[i].id == itemToAdd.id && 
                 itemToAdd.stackable )
             {
+                if (items[i].id == 1 && items[i].quantity == maxPot)
+                {
+                    return false;
+                }
 
                 if (slots[i] == null)   //D
                 {
-
                     slots[i] = CreateNewSlotForItem("ItemSlot" + i, items[i]); //D
                 }
                 else
@@ -126,6 +131,11 @@ public class Inventory : MonoBehaviour
                 inventory.SetActive(false);
             else
                 inventory.SetActive(true);
+    }
+
+    public void IncreaseMaxPot()
+    {
+        maxPot++;
     }
 
 }
