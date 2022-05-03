@@ -35,7 +35,7 @@ public class VidaJefe : MonoBehaviour
             Invoke("DesactivarHudVida", 3);
             this.GetComponent<Combate>().Muerto();
             vidaText.text = "0" + "/" + vida_Max.ToString();
-            deathSound.Play();
+            //deathSound.Play();
         }
         else
         {

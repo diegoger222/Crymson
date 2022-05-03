@@ -18,7 +18,7 @@ public class Combate : MonoBehaviour
     private Animator animator;
 
     private float distanciaJugador;
-    private float distanciaDeteccion = 30;
+    private float distanciaDeteccion = 10;
     private bool vivo = true;
     private GameObject target;
     private int m_facingDirection = -1;
@@ -96,7 +96,7 @@ public class Combate : MonoBehaviour
     private void Golpe()
     {
         animator.SetTrigger("Atk1");
-        attackSound.Play();
+        //attackSound.Play();
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
 
         foreach (Collider2D colisionador in objetos)
