@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Nivel2TP : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class Nivel2TP : MonoBehaviour
         */
         if (other.CompareTag("Player"))
         {
-            other.transform.position = nivel2.transform.position;
+            SceneManager.LoadScene("Game");
         }
 
 
